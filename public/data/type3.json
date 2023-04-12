@@ -1,0 +1,736 @@
+{
+  "records": [
+    {
+      "type": 3,
+      "typeId": 1,
+      "name": "brick factory",
+      "value": 6,
+      "cost": [[[1, 3]]],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1,
+      "isStartingBuilding": true,
+      "isExtension": false,
+      "points": 1,
+      "effectCost": [[[0, 1]]],
+      "effectCapital": [],
+      "effectProduct": [1, 1]
+    },
+    {
+      "type": 3,
+      "typeId": 2,
+      "name": "charcoal hut",
+      "value": 6,
+      "cost": [[[1, 4]]],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1,
+      "isStartingBuilding": true,
+      "isExtension": false,
+      "points": 1,
+      "effectCost": [[[0, 5]]],
+      "effectCapital": [],
+      "effectProduct": [1, 3]
+    },
+    {
+      "type": 3,
+      "typeId": 3,
+      "name": "quarry",
+      "value": 6,
+      "cost": [[[1, 1]]],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1,
+      "isStartingBuilding": true,
+      "isExtension": false,
+      "points": 1,
+      "effectCost": [[[0, 3]]],
+      "effectCapital": [],
+      "effectProduct": [1, 4]
+    },
+    {
+      "type": 3,
+      "typeId": 4,
+      "name": "spinning mill",
+      "value": 8,
+      "cost": [[[1, 9]]],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1,
+      "isStartingBuilding": true,
+      "isExtension": false,
+      "points": 1,
+      "effectCost": [[[0, 2]]],
+      "effectCapital": [[[1, 7]]],
+      "effectProduct": [1, 8]
+    },
+    {
+      "type": 3,
+      "typeId": 5,
+      "name": "water mill",
+      "value": 6,
+      "cost": [[[1, 1]]],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1,
+      "isStartingBuilding": true,
+      "isExtension": false,
+      "points": 1,
+      "effectCost": [[[0, 4]]],
+      "effectCapital": [],
+      "effectProduct": [1, 6]
+    },
+    {
+      "type": 3,
+      "typeId": 6,
+      "name": "abattoir",
+      "value": 6,
+      "cost": [[[1, 3]]],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1,
+      "isStartingBuilding": false,
+      "isExtension": false,
+      "points": 1,
+      "effectCost": [[[1, 7]], [[1, 2]]],
+      "effectCapital": [],
+      "effectProduct": [2, 7]
+    },
+    {
+      "type": 3,
+      "typeId": 7,
+      "name": "accessory shop",
+      "value": 10,
+      "cost": [[[2, 3]]],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1,
+      "isStartingBuilding": false,
+      "isExtension": false,
+      "points": 1,
+      "effectCost": [[[2, 6]], [[2, 5]]],
+      "effectCapital": [],
+      "effectPoints": 2
+    },
+    {
+      "type": 3,
+      "typeId": 8,
+      "name": "bakery",
+      "value": 11,
+      "cost": [
+        [
+          [1, 1],
+          [1, 4]
+        ]
+      ],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1,
+      "isStartingBuilding": false,
+      "isExtension": false,
+      "points": 2,
+      "effectCost": [[[2, 2]]],
+      "effectCapital": [],
+      "effectPoints": 2
+    },
+    {
+      "type": 3,
+      "typeId": 9,
+      "name": "bar",
+      "value": 11,
+      "cost": [
+        [
+          [1, 1],
+          [1, 3]
+        ]
+      ],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1,
+      "isStartingBuilding": false,
+      "isExtension": false,
+      "points": 2,
+      "effectCost": [
+        [
+          [2, 1],
+          [0, 4]
+        ]
+      ],
+      "effectCapital": [],
+      "effectPoints": 2
+    },
+    {
+      "type": 3,
+      "typeId": 10,
+      "name": "barrel factory",
+      "value": 6,
+      "cost": [[[1, 4]]],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1,
+      "isStartingBuilding": false,
+      "isExtension": false,
+      "points": 1,
+      "effectCost": [[[1, 9]]],
+      "effectCapital": [],
+      "effectProduct": [2, 1]
+    },
+    {
+      "type": 3,
+      "typeId": 11,
+      "name": "bread factory",
+      "value": 6,
+      "cost": [[[1, 1]]],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1,
+      "isStartingBuilding": false,
+      "isExtension": false,
+      "points": 1,
+      "effectCost": [
+        [
+          [1, 3],
+          [1, 6]
+        ]
+      ],
+      "effectCapital": [],
+      "effectProduct": [2, 2]
+    },
+    {
+      "type": 3,
+      "typeId": 12,
+      "name": "butcher",
+      "value": 12,
+      "cost": [[[2, 5]]],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1,
+      "isStartingBuilding": false,
+      "isExtension": false,
+      "points": 2,
+      "effectCost": [[[2, 7]]],
+      "effectCapital": [],
+      "effectPoints": 2
+    },
+    {
+      "type": 3,
+      "typeId": 13,
+      "name": "castle",
+      "value": 30,
+      "cost": [
+        [
+          [2, 5],
+          [2, 9],
+          [1, 9]
+        ]
+      ],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1,
+      "isStartingBuilding": false,
+      "isExtension": false,
+      "points": 5,
+      "effectCost": [],
+      "effectCapital": []
+    },
+    {
+      "type": 3,
+      "typeId": 14,
+      "name": "cattle ranch",
+      "value": 8,
+      "cost": [[[1, 9]]],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1,
+      "isStartingBuilding": false,
+      "isExtension": false,
+      "points": 1,
+      "effectCost": [
+        [
+          [0, 4],
+          [0, 1]
+        ]
+      ],
+      "effectCapital": [],
+      "effectProduct": [1, 2]
+    },
+    {
+      "type": 3,
+      "typeId": 15,
+      "name": "cheese factory",
+      "value": 12,
+      "cost": [[[2, 9]]],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1,
+      "isStartingBuilding": false,
+      "isExtension": false,
+      "points": 2,
+      "effectCost": [
+        [
+          [2, 1],
+          [2, 8]
+        ]
+      ],
+      "effectCapital": [],
+      "effectPoints": 3
+    },
+    {
+      "type": 3,
+      "typeId": 16,
+      "name": "dairy",
+      "value": 6,
+      "cost": [[[1, 4]]],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1,
+      "isStartingBuilding": false,
+      "isExtension": false,
+      "points": 1,
+      "effectCost": [],
+      "effectCapital": [[[1, 2]]],
+      "effectProduct": [2, 8]
+    },
+    {
+      "type": 3,
+      "typeId": 17,
+      "name": "fish shop",
+      "value": 8,
+      "cost": [[[1, 9]]],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1,
+      "isStartingBuilding": false,
+      "isExtension": false,
+      "points": 1,
+      "effectCost": [[[1, 5]]],
+      "effectCapital": [],
+      "effectPoints": 1
+    },
+    {
+      "type": 3,
+      "typeId": 18,
+      "name": "fishing pond",
+      "value": 8,
+      "cost": [[[1, 9]]],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1,
+      "isStartingBuilding": false,
+      "isExtension": false,
+      "points": 1,
+      "effectCost": [[[0, 3]]],
+      "effectCapital": [[[2, 4]]],
+      "effectProduct": [1, 5]
+    },
+    {
+      "type": 3,
+      "typeId": 19,
+      "name": "ironworks",
+      "value": 6,
+      "cost": [[[1, 1]]],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1,
+      "isStartingBuilding": false,
+      "isExtension": false,
+      "points": 1,
+      "effectCost": [
+        [
+          [1, 3],
+          [0, 3]
+        ]
+      ],
+      "effectCapital": [],
+      "effectProduct": [2, 5]
+    },
+    {
+      "type": 3,
+      "typeId": 20,
+      "name": "mansion",
+      "value": 18,
+      "cost": [
+        [
+          [1, 9],
+          [1, 1],
+          [1, 4]
+        ]
+      ],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1,
+      "isStartingBuilding": false,
+      "isExtension": false,
+      "points": 3,
+      "effectCost": [],
+      "effectCapital": []
+    },
+    {
+      "type": 3,
+      "typeId": 21,
+      "name": "market",
+      "value": 8,
+      "cost": [[[1, 5]]],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1,
+      "isStartingBuilding": false,
+      "isExtension": false,
+      "points": 1,
+      "effectCost": [],
+      "effectCapital": [],
+      "specialEffect": "pay 1 tie2 resource for trading"
+    },
+    {
+      "type": 3,
+      "typeId": 22,
+      "name": "masonry",
+      "value": 6,
+      "cost": [[[1, 6]]],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1,
+      "isStartingBuilding": false,
+      "isExtension": false,
+      "points": 1,
+      "effectCost": [
+        [
+          [1, 4],
+          [0, 1]
+        ]
+      ],
+      "effectCapital": [],
+      "effectProduct": [2, 9]
+    },
+    {
+      "type": 3,
+      "typeId": 23,
+      "name": "milk shop",
+      "value": 6,
+      "cost": [[[1, 1]]],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1,
+      "isStartingBuilding": false,
+      "isExtension": false,
+      "points": 1,
+      "effectCost": [[[2, 8]]],
+      "effectCapital": [],
+      "effectPoints": 1
+    },
+    {
+      "type": 3,
+      "typeId": 24,
+      "name": "restaurant",
+      "value": 12,
+      "cost": [[[2, 9]]],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1,
+      "isStartingBuilding": false,
+      "isExtension": false,
+      "points": 2,
+      "effectCost": [
+        [
+          [2, 2],
+          [2, 8]
+        ]
+      ],
+      "effectCapital": [],
+      "effectPoints": 4
+    },
+    {
+      "type": 3,
+      "typeId": 25,
+      "name": "sawmill",
+      "value": 6,
+      "cost": [[[1, 4]]],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1,
+      "isStartingBuilding": false,
+      "isExtension": false,
+      "points": 1,
+      "effectCost": [
+        [
+          [0, 5],
+          [0, 5]
+        ]
+      ],
+      "effectCapital": [],
+      "effectProduct": [1, 9]
+    },
+    {
+      "type": 3,
+      "typeId": 26,
+      "name": "sheep ranch",
+      "value": 6,
+      "cost": [[[1, 1]]],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1,
+      "isStartingBuilding": false,
+      "isExtension": false,
+      "points": 1,
+      "effectCost": [
+        [
+          [0, 5],
+          [0, 4]
+        ]
+      ],
+      "effectCapital": [],
+      "effectProduct": [1, 7]
+    },
+    {
+      "type": 3,
+      "typeId": 27,
+      "name": "shoe store",
+      "value": 12,
+      "cost": [[[2, 5]]],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1,
+      "isStartingBuilding": false,
+      "isExtension": false,
+      "points": 2,
+      "effectCost": [
+        [
+          [2, 6],
+          [1, 8]
+        ]
+      ],
+      "effectCapital": [],
+      "effectPoints": 3
+    },
+    {
+      "type": 3,
+      "typeId": 28,
+      "name": "tailor",
+      "value": 12,
+      "cost": [[[2, 9]]],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1,
+      "isStartingBuilding": false,
+      "isExtension": false,
+      "points": 2,
+      "effectCost": [
+        [
+          [2, 3],
+          [1, 8]
+        ]
+      ],
+      "effectCapital": [],
+      "effectPoints": 2
+    },
+    {
+      "type": 3,
+      "typeId": 29,
+      "name": "tannery",
+      "value": 6,
+      "cost": [[[1, 4]]],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1,
+      "isStartingBuilding": false,
+      "isExtension": false,
+      "points": 1,
+      "effectCost": [[[1, 2]]],
+      "effectCapital": [],
+      "effectProduct": [2, 6]
+    },
+    {
+      "type": 3,
+      "typeId": 30,
+      "name": "textile factory",
+      "value": 8,
+      "cost": [[[1, 9]]],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1,
+      "isStartingBuilding": false,
+      "isExtension": false,
+      "points": 1,
+      "effectCost": [[[1, 8]]],
+      "effectCapital": [],
+      "effectProduct": [2, 3]
+    },
+    {
+      "type": 3,
+      "typeId": 31,
+      "name": "building firm",
+      "value": 12,
+      "cost": [[[2, 5]]],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1,
+      "isStartingBuilding": false,
+      "isExtension": true,
+      "points": 2,
+      "effectCost": [],
+      "effectCapital": [],
+      "specialEffect": "trade for 1 building"
+    },
+    {
+      "type": 3,
+      "typeId": 32,
+      "name": "building supply store",
+      "value": 8,
+      "cost": [[[1, 9]]],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1,
+      "isStartingBuilding": false,
+      "isExtension": true,
+      "points": 1,
+      "effectCost": [
+        [
+          [1, 1],
+          [2, 9]
+        ]
+      ],
+      "effectCapital": [],
+      "effectPoints": 3
+    },
+    {
+      "type": 3,
+      "typeId": 33,
+      "name": "furniture shop",
+      "value": 8,
+      "cost": [[[1, 2]]],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1,
+      "isStartingBuilding": false,
+      "isExtension": true,
+      "points": 1,
+      "effectCost": [
+        [
+          [1, 9],
+          [2, 3]
+        ]
+      ],
+      "effectCapital": [],
+      "effectPoints": 3
+    },
+    {
+      "type": 3,
+      "typeId": 34,
+      "name": "general store",
+      "value": 12,
+      "cost": [[[2, 4]]],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1,
+      "isStartingBuilding": false,
+      "isExtension": true,
+      "points": 2,
+      "effectCost": [],
+      "effectCapital": [],
+      "specialEffect": "pay at less 3 value to get the card from the top of tie1 card deck"
+    },
+    {
+      "type": 3,
+      "typeId": 35,
+      "name": "old wood factory",
+      "value": 6,
+      "cost": [[[1, 1]]],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1,
+      "isStartingBuilding": false,
+      "isExtension": true,
+      "points": 1,
+      "effectCost": [[[2, 1]]],
+      "effectCapital": [],
+      "effectPoints": 1,
+      "effectProduct": [1, 9]
+    },
+    {
+      "type": 3,
+      "typeId": 36,
+      "name": "trading post",
+      "value": 6,
+      "cost": [[[1, 8]]],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1,
+      "isStartingBuilding": false,
+      "isExtension": true,
+      "points": 1,
+      "effectCost": [],
+      "effectCapital": [],
+      "specialEffect": "trade 1 tie1 resource for 1 tie1 resource"
+    },
+    {
+      "type": 3,
+      "typeId": 37,
+      "name": "wheat farm",
+      "value": 6,
+      "cost": [[[1, 3]]],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1,
+      "isStartingBuilding": false,
+      "isExtension": true,
+      "points": 1,
+      "effectCost": [],
+      "effectCapital": [],
+      "specialEffect": "when there is at less 2 wheat in the deck, produce 1 wheat"
+    },
+    {
+      "type": 3,
+      "typeId": 38,
+      "name": "wholesaler",
+      "value": 6,
+      "cost": [[[1, 6]]],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1,
+      "isStartingBuilding": false,
+      "isExtension": true,
+      "points": 1,
+      "effectCost": [],
+      "effectCapital": [],
+      "specialEffect": "trading, can only get 1 tie2 resource"
+    }
+  ]
+}

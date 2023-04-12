@@ -1,0 +1,59 @@
+{
+  "records": [
+    {
+      "type": 0,
+      "typeId": 1,
+      "name": "clay",
+      "value": 1,
+      "cost": [],
+      "capital": [],
+      "twoPlayers": 2,
+      "threePlayers": 3,
+      "fourPlayers": 3
+    },
+    {
+      "type": 0,
+      "typeId": 2,
+      "name": "cotton",
+      "value": 1,
+      "cost": [],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 2
+    },
+    {
+      "type": 0,
+      "typeId": 3,
+      "name": "stone",
+      "value": 1,
+      "cost": [],
+      "capital": [],
+      "twoPlayers": 2,
+      "threePlayers": 3,
+      "fourPlayers": 3
+    },
+    {
+      "type": 0,
+      "typeId": 4,
+      "name": "wheat",
+      "value": 1,
+      "cost": [],
+      "capital": [],
+      "twoPlayers": 2,
+      "threePlayers": 3,
+      "fourPlayers": 3
+    },
+    {
+      "type": 0,
+      "typeId": 5,
+      "name": "wood",
+      "value": 1,
+      "cost": [],
+      "capital": [],
+      "twoPlayers": 3,
+      "threePlayers": 4,
+      "fourPlayers": 5
+    }
+  ]
+}

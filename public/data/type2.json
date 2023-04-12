@@ -1,0 +1,123 @@
+{
+  "records": [
+    {
+      "type": 2,
+      "typeId": 1,
+      "name": "barrel",
+      "value": 8,
+      "cost": [[[1, 9]]],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1
+    },
+    {
+      "type": 2,
+      "typeId": 2,
+      "name": "bread",
+      "value": 11,
+      "cost": [
+        [
+          [1, 3],
+          [1, 6]
+        ]
+      ],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1
+    },
+    {
+      "type": 2,
+      "typeId": 3,
+      "name": "cloth",
+      "value": 6,
+      "cost": [[[1, 8]]],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1
+    },
+    {
+      "type": 2,
+      "typeId": 4,
+      "name": "fishing rod",
+      "value": 8,
+      "cost": [
+        [
+          [1, 8],
+          [0, 5]
+        ]
+      ],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1
+    },
+    {
+      "type": 2,
+      "typeId": 5,
+      "name": "iron",
+      "value": 8,
+      "cost": [
+        [
+          [1, 3],
+          [0, 3]
+        ]
+      ],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1
+    },
+    {
+      "type": 2,
+      "typeId": 6,
+      "name": "leather",
+      "value": 8,
+      "cost": [[[1, 2]]],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1
+    },
+    {
+      "type": 2,
+      "typeId": 7,
+      "name": "meat",
+      "value": 8,
+      "cost": [[[1, 7]], [[1, 2]]],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1
+    },
+    {
+      "type": 2,
+      "typeId": 8,
+      "name": "milk",
+      "value": 4,
+      "cost": [],
+      "capital": [[[1, 2]]],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1
+    },
+    {
+      "type": 2,
+      "typeId": 9,
+      "name": "stone wall",
+      "value": 8,
+      "cost": [
+        [
+          [1, 4],
+          [0, 1]
+        ]
+      ],
+      "capital": [],
+      "twoPlayers": 1,
+      "threePlayers": 1,
+      "fourPlayers": 1
+    }
+  ]
+}
