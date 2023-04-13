@@ -1,7 +1,7 @@
 {
   "records": [
     {
-      "type": 2,
+      "cardType": 2,
       "typeId": 1,
       "name": "barrel",
       "value": 8,
@@ -12,7 +12,7 @@
       "fourPlayers": 1
     },
     {
-      "type": 2,
+      "cardType": 2,
       "typeId": 2,
       "name": "bread",
       "value": 11,
@@ -28,7 +28,7 @@
       "fourPlayers": 1
     },
     {
-      "type": 2,
+      "cardType": 2,
       "typeId": 3,
       "name": "cloth",
       "value": 6,
@@ -39,7 +39,7 @@
       "fourPlayers": 1
     },
     {
-      "type": 2,
+      "cardType": 2,
       "typeId": 4,
       "name": "fishing rod",
       "value": 8,
@@ -55,7 +55,7 @@
       "fourPlayers": 1
     },
     {
-      "type": 2,
+      "cardType": 2,
       "typeId": 5,
       "name": "iron",
       "value": 8,
@@ -71,7 +71,7 @@
       "fourPlayers": 1
     },
     {
-      "type": 2,
+      "cardType": 2,
       "typeId": 6,
       "name": "leather",
       "value": 8,
@@ -82,7 +82,7 @@
       "fourPlayers": 1
     },
     {
-      "type": 2,
+      "cardType": 2,
       "typeId": 7,
       "name": "meat",
       "value": 8,
@@ -93,7 +93,7 @@
       "fourPlayers": 1
     },
     {
-      "type": 2,
+      "cardType": 2,
       "typeId": 8,
       "name": "milk",
       "value": 4,
@@ -104,7 +104,7 @@
       "fourPlayers": 1
     },
     {
-      "type": 2,
+      "cardType": 2,
       "typeId": 9,
       "name": "stone wall",
       "value": 8,

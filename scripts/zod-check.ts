@@ -5,7 +5,7 @@ import { z } from "zod";
 const rootDir = path.join(__dirname, "../public/data");
 
 const resourceRecordSchema = z.object({
-  type: z.number().min(0).max(3),
+  cardType: z.number().min(0).max(3),
   typeId: z.number().min(1),
   name: z.string(),
   value: z.number().min(1),
@@ -21,12 +21,11 @@ const resourceJsonSchema = z.object({
 });
 
 const buildingRecord = z.object({
-  type: z.number().min(0).max(3),
+  cardType: z.number().min(0).max(3),
   typeId: z.number().min(1),
   name: z.string(),
   value: z.number(),
   cost: z.array(z.array(z.tuple([z.number(), z.number()]))),
-  capital: z.tuple([]),
   twoPlayers: z.number().min(1).max(1),
   threePlayers: z.number().min(1).max(1),
   fourPlayers: z.number().min(1).max(1),

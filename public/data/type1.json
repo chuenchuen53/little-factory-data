@@ -1,7 +1,7 @@
 {
   "records": [
     {
-      "type": 1,
+      "cardType": 1,
       "typeId": 1,
       "name": "brick",
       "value": 3,
@@ -12,7 +12,7 @@
       "fourPlayers": 3
     },
     {
-      "type": 1,
+      "cardType": 1,
       "typeId": 2,
       "name": "cattle",
       "value": 5,
@@ -28,7 +28,7 @@
       "fourPlayers": 2
     },
     {
-      "type": 1,
+      "cardType": 1,
       "typeId": 3,
       "name": "charcoal",
       "value": 3,
@@ -39,7 +39,7 @@
       "fourPlayers": 3
     },
     {
-      "type": 1,
+      "cardType": 1,
       "typeId": 4,
       "name": "cut stone",
       "value": 3,
@@ -50,7 +50,7 @@
       "fourPlayers": 2
     },
     {
-      "type": 1,
+      "cardType": 1,
       "typeId": 5,
       "name": "fish",
       "value": 5,
@@ -61,7 +61,7 @@
       "fourPlayers": 1
     },
     {
-      "type": 1,
+      "cardType": 1,
       "typeId": 6,
       "name": "flour",
       "value": 3,
@@ -72,7 +72,7 @@
       "fourPlayers": 2
     },
     {
-      "type": 1,
+      "cardType": 1,
       "typeId": 7,
       "name": "sheep",
       "value": 5,
@@ -88,7 +88,7 @@
       "fourPlayers": 2
     },
     {
-      "type": 1,
+      "cardType": 1,
       "typeId": 8,
       "name": "thread",
       "value": 3,
@@ -99,7 +99,7 @@
       "fourPlayers": 2
     },
     {
-      "type": 1,
+      "cardType": 1,
       "typeId": 9,
       "name": "timber",
       "value": 5,

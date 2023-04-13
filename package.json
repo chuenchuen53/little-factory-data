@@ -6,7 +6,8 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production node index.js",
     "dev": "cross-env NODE_ENV=development ts-node-dev app.ts",
-    "schema-check": "ts-node ./scripts/zod-check.ts"
+    "schema-check": "ts-node ./scripts/zod-check.ts",
+    "generate": "pnpm schema-check && node ./scripts/generate.js"
   },
   "keywords": [],
   "author": "",

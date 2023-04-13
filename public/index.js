@@ -9,15 +9,15 @@ async function getData() {
   ]);
 }
 
-function mapIdToName(type, typeId) {
-  const record = cardData[type].records.find((record) => record.typeId === typeId);
+function mapIdToName(cardType, typeId) {
+  const record = cardData[cardType].records.find((record) => record.typeId === typeId);
   return record?.name || null;
 }
 
 function mapTypeAndIdToNames(record, keys) {
   const clone = { ...record };
   for (let key of keys) {
-    clone[`${key}Name`] = clone[key].map((opt) => opt.map(([type, typeId]) => mapIdToName(type, typeId)));
+    clone[`${key}Name`] = clone[key].map((opt) => opt.map(([cardType, typeId]) => mapIdToName(cardType, typeId)));
   }
   return clone;
 }
@@ -26,13 +26,13 @@ function innerRows(arr) {
   return arr.map((opt) => `<div>${opt.join(", ")}</div>`).join("");
 }
 
-function renderResourceTable(type) {
+function renderResourceTable(cardType) {
   const tableTemplate = $("#resource-table-template").html();
-  const newTable = $(tableTemplate.replace("{{tableId}}", `table-${type}`));
+  const newTable = $(tableTemplate.replace("{{tableId}}", `table-${cardType}`));
   $("#main-content").append(newTable);
-  const tBody = $(`#table-${type} tbody`);
+  const tBody = $(`#table-${cardType} tbody`);
   const rowTemplate = $("#resource-row-template").html();
-  const data = cardData[type].records.map((record) => mapTypeAndIdToNames(record, ["cost", "capital"]));
+  const data = cardData[cardType].records.map((record) => mapTypeAndIdToNames(record, ["cost", "capital"]));
   data.forEach((record) => {
     const renderedRow = rowTemplate.replace(/{{([^{}]*)}}/g, (match, key) => {
       const value = record[key.trim()];
