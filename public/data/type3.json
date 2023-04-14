@@ -61,7 +61,7 @@
       "isExtension": false,
       "points": 1,
       "effectCost": [[[0, 2]]],
-      "effectCapital": [[[1, 7]]],
+      "effectCapital": [[1, 7]],
       "effectProduct": [1, 8]
     },
     {
@@ -110,7 +110,8 @@
       "points": 1,
       "effectCost": [[[2, 6]], [[2, 5]]],
       "effectCapital": [],
-      "effectPoints": 2
+      "effectPoints": 2,
+      "effectProduct": null
     },
     {
       "cardType": 3,
@@ -131,7 +132,8 @@
       "points": 2,
       "effectCost": [[[2, 2]]],
       "effectCapital": [],
-      "effectPoints": 2
+      "effectPoints": 2,
+      "effectProduct": null
     },
     {
       "cardType": 3,
@@ -157,7 +159,8 @@
         ]
       ],
       "effectCapital": [],
-      "effectPoints": 2
+      "effectPoints": 2,
+      "effectProduct": null
     },
     {
       "cardType": 3,
@@ -210,7 +213,8 @@
       "points": 2,
       "effectCost": [[[2, 7]]],
       "effectCapital": [],
-      "effectPoints": 2
+      "effectPoints": 2,
+      "effectProduct": null
     },
     {
       "cardType": 3,
@@ -231,7 +235,8 @@
       "isExtension": false,
       "points": 5,
       "effectCost": [],
-      "effectCapital": []
+      "effectCapital": [],
+      "effectProduct": null
     },
     {
       "cardType": 3,
@@ -273,7 +278,8 @@
         ]
       ],
       "effectCapital": [],
-      "effectPoints": 3
+      "effectPoints": 3,
+      "effectProduct": null
     },
     {
       "cardType": 3,
@@ -288,7 +294,7 @@
       "isExtension": false,
       "points": 1,
       "effectCost": [],
-      "effectCapital": [[[1, 2]]],
+      "effectCapital": [[1, 2]],
       "effectProduct": [2, 8]
     },
     {
@@ -305,7 +311,8 @@
       "points": 1,
       "effectCost": [[[1, 5]]],
       "effectCapital": [],
-      "effectPoints": 1
+      "effectPoints": 1,
+      "effectProduct": null
     },
     {
       "cardType": 3,
@@ -320,7 +327,7 @@
       "isExtension": false,
       "points": 1,
       "effectCost": [[[0, 3]]],
-      "effectCapital": [[[2, 4]]],
+      "effectCapital": [[2, 4]],
       "effectProduct": [1, 5]
     },
     {
@@ -363,7 +370,8 @@
       "isExtension": false,
       "points": 3,
       "effectCost": [],
-      "effectCapital": []
+      "effectCapital": [],
+      "effectProduct": null
     },
     {
       "cardType": 3,
@@ -379,6 +387,7 @@
       "points": 1,
       "effectCost": [],
       "effectCapital": [],
+      "effectProduct": null,
       "specialEffect": "pay 1 tie2 resource for trading"
     },
     {
@@ -416,7 +425,8 @@
       "points": 1,
       "effectCost": [[[2, 8]]],
       "effectCapital": [],
-      "effectPoints": 1
+      "effectPoints": 1,
+      "effectProduct": null
     },
     {
       "cardType": 3,
@@ -437,7 +447,8 @@
         ]
       ],
       "effectCapital": [],
-      "effectPoints": 4
+      "effectPoints": 4,
+      "effectProduct": null
     },
     {
       "cardType": 3,
@@ -500,7 +511,8 @@
         ]
       ],
       "effectCapital": [],
-      "effectPoints": 3
+      "effectPoints": 3,
+      "effectProduct": null
     },
     {
       "cardType": 3,
@@ -521,7 +533,8 @@
         ]
       ],
       "effectCapital": [],
-      "effectPoints": 2
+      "effectPoints": 2,
+      "effectProduct": null
     },
     {
       "cardType": 3,
@@ -569,6 +582,7 @@
       "points": 2,
       "effectCost": [],
       "effectCapital": [],
+      "effectProduct": null,
       "specialEffect": "trade for 1 building"
     },
     {
@@ -590,7 +604,8 @@
         ]
       ],
       "effectCapital": [],
-      "effectPoints": 3
+      "effectPoints": 3,
+      "effectProduct": null
     },
     {
       "cardType": 3,
@@ -611,7 +626,8 @@
         ]
       ],
       "effectCapital": [],
-      "effectPoints": 3
+      "effectPoints": 3,
+      "effectProduct": null
     },
     {
       "cardType": 3,
@@ -627,6 +643,7 @@
       "points": 2,
       "effectCost": [],
       "effectCapital": [],
+      "effectProduct": null,
       "specialEffect": "pay at less 3 value to get the card from the top of tie1 card deck"
     },
     {
@@ -660,6 +677,7 @@
       "points": 1,
       "effectCost": [],
       "effectCapital": [],
+      "effectProduct": null,
       "specialEffect": "trade 1 tie1 resource for 1 tie1 resource"
     },
     {
@@ -676,6 +694,7 @@
       "points": 1,
       "effectCost": [],
       "effectCapital": [],
+      "effectProduct": null,
       "specialEffect": "when there is at less 2 wheat in the deck, produce 1 wheat"
     },
     {
@@ -692,6 +711,7 @@
       "points": 1,
       "effectCost": [],
       "effectCapital": [],
+      "effectProduct": null,
       "specialEffect": "trading, can only get 1 tie2 resource"
     }
   ]

@@ -98,7 +98,7 @@
       "name": "milk",
       "value": 4,
       "cost": [],
-      "capital": [[[1, 2]]],
+      "capital": [[1, 2]],
       "twoPlayers": 1,
       "threePlayers": 1,
       "fourPlayers": 1

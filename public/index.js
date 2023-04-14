@@ -14,7 +14,15 @@ function mapIdToName(cardType, typeId) {
   return record?.name || null;
 }
 
-function mapTypeAndIdToNames(record, keys) {
+function map1LayerTypeAndIdToNames(record, keys) {
+  const clone = { ...record };
+  for (let key of keys) {
+    clone[`${key}Name`] = clone[key].map(([cardType, typeId]) => mapIdToName(cardType, typeId));
+  }
+  return clone;
+}
+
+function map2LayerTypeAndIdToNames(record, keys) {
   const clone = { ...record };
   for (let key of keys) {
     clone[`${key}Name`] = clone[key].map((opt) => opt.map(([cardType, typeId]) => mapIdToName(cardType, typeId)));
@@ -22,8 +30,29 @@ function mapTypeAndIdToNames(record, keys) {
   return clone;
 }
 
+function getDepth(arr) {
+  if (!Array.isArray(arr)) return 0;
+
+  let maxDepth = 1;
+  for (let i = 0; i < arr.length; i++) {
+    const depth = getDepth(arr[i]) + 1;
+    if (depth > maxDepth) maxDepth = depth;
+  }
+  return maxDepth;
+}
+
 function innerRows(arr) {
   return arr.map((opt) => `<div>${opt.join(", ")}</div>`).join("");
+}
+
+function appendRows(data, rowTemplate, tbody) {
+  data.forEach((record) => {
+    const renderedRow = rowTemplate.replace(/{{([^{}]*)}}/g, (match, key) => {
+      const value = record[key.trim()] ?? "";
+      return Array.isArray(value) ? (getDepth(value) === 2 ? innerRows(value) : value.join(", ")) : value;
+    });
+    tbody.append(renderedRow);
+  });
 }
 
 function renderResourceTable(cardType) {
@@ -32,14 +61,10 @@ function renderResourceTable(cardType) {
   $("#main-content").append(newTable);
   const tBody = $(`#table-${cardType} tbody`);
   const rowTemplate = $("#resource-row-template").html();
-  const data = cardData[cardType].records.map((record) => mapTypeAndIdToNames(record, ["cost", "capital"]));
-  data.forEach((record) => {
-    const renderedRow = rowTemplate.replace(/{{([^{}]*)}}/g, (match, key) => {
-      const value = record[key.trim()];
-      return Array.isArray(value) ? innerRows(value) : value;
-    });
-    tBody.append(renderedRow);
-  });
+  let data = cardData[cardType].records
+    .map((record) => map2LayerTypeAndIdToNames(record, ["cost"]))
+    .map((record) => map1LayerTypeAndIdToNames(record, ["capital"]));
+  appendRows(data, rowTemplate, tBody);
 }
 
 function renderBuildingTable() {
@@ -49,21 +74,15 @@ function renderBuildingTable() {
   const tBody = $(`#table-building tbody`);
   const rowTemplate = $("#building-row-template").html();
   const data = cardData[3].records
-    .map((record) => mapTypeAndIdToNames(record, ["cost", "effectCost", "effectCapital"]))
+    .map((record) => map2LayerTypeAndIdToNames(record, ["cost", "effectCost"]))
+    .map((record) => map1LayerTypeAndIdToNames(record, ["effectCapital"]))
     .map((record) => ({
       ...record,
-      effectProductName:
-        record.effectProduct && record.effectProduct.length
-          ? mapIdToName(record.effectProduct[0], record.effectProduct[1])
-          : "",
+      effectProductName: record.effectProduct?.length
+        ? mapIdToName(record.effectProduct[0], record.effectProduct[1])
+        : "",
     }));
-  data.forEach((record) => {
-    const renderedRow = rowTemplate.replace(/{{([^{}]*)}}/g, (match, key) => {
-      const value = record[key.trim()] ?? "";
-      return Array.isArray(value) ? innerRows(value) : value;
-    });
-    tBody.append(renderedRow);
-  });
+  appendRows(data, rowTemplate, tBody);
 }
 
 $(document).ready(async function () {

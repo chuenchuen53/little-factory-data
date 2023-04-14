@@ -55,7 +55,7 @@
       "name": "fish",
       "value": 5,
       "cost": [[[0, 3]]],
-      "capital": [[[2, 4]]],
+      "capital": [[2, 4]],
       "twoPlayers": 1,
       "threePlayers": 1,
       "fourPlayers": 1
@@ -93,7 +93,7 @@
       "name": "thread",
       "value": 3,
       "cost": [[[0, 2]]],
-      "capital": [[[1, 7]]],
+      "capital": [[1, 7]],
       "twoPlayers": 2,
       "threePlayers": 2,
       "fourPlayers": 2
