@@ -20,7 +20,7 @@ function generateResource(data, filename) {
     name: x.name,
     value: x.value,
     cost: x.cost.map((y) => y.map((z) => ({ cardType: z[0], typeId: z[1] }))),
-    capital: x.capital.map((y) => y.map((z) => ({ cardType: z[0], typeId: z[1] }))),
+    capital: x.capital.map((y) => ({ cardType: y[0], typeId: y[1] })),
   }));
 
   fs.writeFileSync(path.join(outputDir, filename), JSON.stringify(obj, null, 2));
@@ -37,8 +37,8 @@ function generateBuilding(data, filename) {
     isExtension: x.isExtension,
     points: x.points,
     effectCost: x.effectCost.map((y) => y.map((z) => ({ cardType: z[0], typeId: z[1] }))),
-    effectCapital: x.effectCapital.map((y) => y.map((z) => ({ cardType: z[0], typeId: z[1] }))),
-    effectProduct: x.effectProduct ? { cardType: x.effectProduct[0], typeId: x.effectProduct[1] } : [],
+    effectCapital: x.effectCapital.map((y) => ({ cardType: y[0], typeId: y[1] })),
+    effectProduct: x.effectProduct ? { cardType: x.effectProduct[0], typeId: x.effectProduct[1] } : null,
     effectPoints: x.effectPoints,
   }));
 
