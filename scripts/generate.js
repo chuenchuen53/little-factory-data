@@ -45,9 +45,26 @@ function generateBuilding(data, filename) {
   fs.writeFileSync(path.join(outputDir, filename), JSON.stringify(obj, null, 2));
 }
 
+function generateCardQuantity(data, filename) {
+  const obj = data.records.map((x) => ({
+    cardType: x.cardType,
+    typeId: x.typeId,
+    twoPlayers: x.twoPlayers,
+    threePlayers: x.threePlayers,
+    fourPlayers: x.fourPlayers,
+  }));
+
+  fs.writeFileSync(path.join(outputDir, filename), JSON.stringify(obj, null, 2));
+}
+
 console.log("[INFO] Generating resources...");
 generateResource(type0, "type0.json");
 generateResource(type1, "type1.json");
 generateResource(type2, "type2.json");
 generateBuilding(type3, "type3.json");
+
+generateCardQuantity(type0, "type0-quantity.json");
+generateCardQuantity(type1, "type1-quantity.json");
+generateCardQuantity(type2, "type2-quantity.json");
+generateCardQuantity(type3, "type3-quantity.json");
 console.log("[INFO] Done.");
