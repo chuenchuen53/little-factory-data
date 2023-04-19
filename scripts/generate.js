@@ -15,8 +15,7 @@ const type3 = JSON.parse(fs.readFileSync(path.join(rootDir, "type3.json"), "utf8
 
 function generateResource(data, filename) {
   const obj = data.records.map((x) => ({
-    cardType: x.cardType,
-    typeId: x.typeId,
+    cardIdentity: { cardType: x.cardType, typeId: x.typeId },
     name: x.name,
     value: x.value,
     cost: x.cost.map((y) => y.map((z) => ({ cardType: z[0], typeId: z[1] }))),
@@ -28,8 +27,7 @@ function generateResource(data, filename) {
 
 function generateBuilding(data, filename) {
   const obj = data.records.map((x) => ({
-    cardType: x.cardType,
-    typeId: x.typeId,
+    cardIdentity: { cardType: x.cardType, typeId: x.typeId },
     name: x.name,
     value: x.value,
     cost: x.cost.map((y) => y.map((z) => ({ cardType: z[0], typeId: z[1] }))),
@@ -47,8 +45,7 @@ function generateBuilding(data, filename) {
 
 function generateCardQuantity(data, filename) {
   const obj = data.records.map((x) => ({
-    cardType: x.cardType,
-    typeId: x.typeId,
+    cardIdentity: { cardType: x.cardType, typeId: x.typeId },
     twoPlayers: x.twoPlayers,
     threePlayers: x.threePlayers,
     fourPlayers: x.fourPlayers,
