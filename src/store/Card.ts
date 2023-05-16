@@ -1,4 +1,4 @@
-import type { CardIdentity } from './CardIdentity';
+import type { CardIdentity } from "./CardIdentity";
 
 export class Card {
   private static instances: Map<CardIdentity, Card> = new Map();

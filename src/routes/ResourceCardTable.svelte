@@ -1,10 +1,13 @@
 <script lang="ts">
   import Table from "$lib/Table/Table.svelte";
-  import { cardTypeTranslator } from "../store/CardType";
+  import { CardType, cardTypeTranslator } from "../store/CardType";
   import type { GridColDef } from "$lib/Table/typing";
   import type { ResourceCard } from "../store/typing/ResourceCard";
-  import type { CardIdentity } from "../store/CardIdentity";
+  import { CardIdentity } from "../store/CardIdentity";
   import { Card } from "../store/Card";
+  import Fa from "svelte-fa";
+  import { faEdit } from "@fortawesome/free-solid-svg-icons";
+  import { resourceCardModalStore } from "../store/resourceCardModal";
 
   export let data: ResourceCard[];
 
@@ -32,6 +35,10 @@
     {
       field: "capital",
       headerName: "Capital"
+    },
+    {
+      field: "edit",
+      headerName: "Edit"
     }
   ];
 
@@ -49,20 +56,31 @@
   function cardIdentityArrToNames(ids: CardIdentity[]): string[] {
     return ids.map((id) => Card.getName(id));
   }
+
+  const openResourceCardEditModal = (cardType: CardType, typeId: number) => {
+    const cardIdentity = CardIdentity.get(cardType, typeId);
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const card = data.find((x) => x.cardIdentity === cardIdentity)!;
+    resourceCardModalStore.openModal(card);
+  };
 </script>
 
 <Table {columns} {rows}>
-  <svelte:fragment slot="cell" let:field let:data>
+  <svelte:fragment slot="cell" let:field let:rowData let:cellData>
     {#if field === "cardType"}
-      {cardTypeTranslator(data)}
+      {cardTypeTranslator(cellData)}
     {:else if field === "cost"}
-      {#each data as optCost}
+      {#each cellData as optCost}
         <div>{optCost.join(", ")}</div>
       {/each}
     {:else if field === "capital"}
-      {data.join(", ")}
+      {cellData.join(", ")}
+    {:else if field === "edit"}
+      <button on:click={() => openResourceCardEditModal(rowData.cardType, rowData.typeId)}>
+        <Fa icon={faEdit} />
+      </button>
     {:else}
-      {data}
+      {cellData}
     {/if}
   </svelte:fragment>
 </Table>

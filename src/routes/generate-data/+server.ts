@@ -6,9 +6,9 @@ import type { CardQuantity } from "../../store/typing/CardQuantity";
 import type { RequestEvent } from "@sveltejs/kit";
 import type { GenerateDataRequestBody } from "./typing";
 
-const outputDir = path.resolve("generated-data");
+const outputDir = path.resolve("output/generated-data");
 if (!fs.existsSync(outputDir)) {
-  fs.mkdirSync(outputDir);
+  fs.mkdirSync(outputDir, { recursive: true });
 }
 
 function generateFile(data: (ResourceCard | BuildingCard | CardQuantity)[], filename: string) {

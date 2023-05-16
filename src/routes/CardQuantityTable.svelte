@@ -48,11 +48,11 @@
 </script>
 
 <Table {columns} {rows}>
-  <svelte:fragment slot="cell" let:field let:data>
+  <svelte:fragment slot="cell" let:field let:cellData>
     {#if field === "cardType"}
-      {cardTypeTranslator(data)}
+      {cardTypeTranslator(cellData)}
     {:else}
-      {data}
+      {cellData}
     {/if}
   </svelte:fragment>
 </Table>

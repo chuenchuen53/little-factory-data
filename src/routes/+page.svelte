@@ -7,7 +7,10 @@
   import BuildingCardTable from "./BuildingCardTable.svelte";
   import CardQuantityTable from "./CardQuantityTable.svelte";
   import { checkSchema } from "./generate-data/zod-check";
+  import ResourceCardDataModal from "./ResourceCardDataModal.svelte";
+  import Tag from "$lib/Tag.svelte";
   import type { GenerateDataRequestBody } from "./generate-data/typing";
+  import TagSelector from "$lib/TagSelector.svelte";
 
   $: basicResource = $cardDataStore[CardType.BASIC_RESOURCE];
   $: levelOneResource = $cardDataStore[CardType.LEVEL_ONE_RESOURCE];
@@ -49,6 +52,8 @@
   <div class="my-6"><ResourceCardTable data={levelTwoResource} /></div>
   <div class="my-6"><BuildingCardTable data={building} /></div>
   <div class="my-6"><CardQuantityTable data={$cardQuantityStore} /></div>
+
+  <ResourceCardDataModal />
 </div>
 
 <style lang="postcss">

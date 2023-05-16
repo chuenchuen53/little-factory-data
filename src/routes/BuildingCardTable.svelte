@@ -87,31 +87,31 @@
 </script>
 
 <Table {columns} {rows}>
-  <svelte:fragment slot="cell" let:field let:data>
+  <svelte:fragment slot="cell" let:field let:cellData>
     {#if field === "cardType"}
-      {cardTypeTranslator(data)}
+      {cardTypeTranslator(cellData)}
     {:else if field === "cost"}
-      {#each data as optCost}
+      {#each cellData as optCost}
         <div>{optCost.join(", ")}</div>
       {/each}
     {:else if field === "isStartingBuilding"}
-      {data ? data : ""}
+      {cellData ? cellData : ""}
     {:else if field === "isExtension"}
-      {data ? data : ""}
+      {cellData ? cellData : ""}
     {:else if field === "effectCost"}
-      {#each data as optCost}
+      {#each cellData as optCost}
         <div>{optCost.join(", ")}</div>
       {/each}
     {:else if field === "effectCapital"}
-      {data.join(", ")}
+      {cellData.join(", ")}
     {:else if field === "effectProduct"}
-      {data ? data : ""}
+      {cellData ? cellData : ""}
     {:else if field === "effectPoints"}
-      {data ? data : ""}
+      {cellData ? cellData : ""}
     {:else if field === "specialEffect"}
-      {data ? data : ""}
+      {cellData ? cellData : ""}
     {:else}
-      {data}
+      {cellData}
     {/if}
   </svelte:fragment>
 </Table>

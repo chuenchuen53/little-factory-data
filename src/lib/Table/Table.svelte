@@ -23,7 +23,7 @@
         >
           {#each columns as column}
             <td class="px-6 py-1">
-              <slot name="cell" field={column.field} data={row[column.field]} />
+              <slot name="cell" field={column.field} rowData={row} cellData={row[column.field]} />
             </td>
           {/each}
         </tr>

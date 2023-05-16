@@ -1,4 +1,4 @@
-import { writable } from "svelte/store";
+import { derived, writable, type Writable } from "svelte/store";
 import { CardIdentity } from "./CardIdentity";
 import { Card } from "./Card";
 import { basicResource, levelOneResource, levelTwoResource, building } from "./data";
@@ -94,10 +94,43 @@ function customStore() {
     }
   });
 
-  const { subscribe, set, update } = writable<CardDataStore>(initData);
+  const store = writable<CardDataStore>(initData);
+  const { subscribe, set, update } = store;
+
+  const updateResourceCard = (card: ResourceCard) => {
+    update((x) => {
+      const cardType = card.cardIdentity.cardType;
+      const index = x[cardType].findIndex(
+        (y) =>
+          y.cardIdentity.cardType === card.cardIdentity.cardType &&
+          y.cardIdentity.typeId === card.cardIdentity.typeId
+      );
+      x[cardType][index] = card;
+
+      return x;
+    });
+  };
+
+  const getName = derived(store, ($store) => (cardIdentity: CardIdentity) => {
+    const cardType = cardIdentity.cardType;
+    const arr: { cardIdentity: CardIdentity; name: string }[] = $store[cardType];
+    return arr.find((x) => x.cardIdentity === cardIdentity)?.name ?? "";
+  });
+
+  const getAllResourceCards = derived(store, ($store) => {
+    const arr: ResourceCard[] = [
+      ...$store[CardType.BASIC_RESOURCE],
+      ...$store[CardType.LEVEL_ONE_RESOURCE],
+      ...$store[CardType.LEVEL_TWO_RESOURCE]
+    ];
+    return arr;
+  });
 
   return {
-    subscribe
+    subscribe,
+    updateResourceCard,
+    getName,
+    getAllResourceCards
   };
 }
 
