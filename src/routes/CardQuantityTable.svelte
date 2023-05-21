@@ -1,12 +1,12 @@
 <script lang="ts">
   import Table from "$lib/Table/Table.svelte";
-  import { cardTypeTranslator } from "../store/CardType";
   import type { GridColDef } from "$lib/Table/typing";
-  import type { CardIdentity } from "../store/CardIdentity";
-  import { Card } from "../store/Card";
-  import type { CardQuantity } from "../store/typing/CardQuantity";
+  import { cardTypeTranslator } from "../game/translator";
+  import type { CardQuantity } from "../game/typing";
+  import { cardDataStore } from "../store/cardData";
 
   export let data: CardQuantity[];
+  $: getName = cardDataStore.getName;
 
   const columns: GridColDef[] = [
     {
@@ -39,7 +39,7 @@
     return {
       cardType: x.cardIdentity.cardType,
       typeId: x.cardIdentity.typeId,
-      name: Card.getName(x.cardIdentity),
+      name: $getName(x.cardIdentity),
       twoPlayers: x.twoPlayers,
       threePlayers: x.threePlayers,
       fourPlayers: x.fourPlayers

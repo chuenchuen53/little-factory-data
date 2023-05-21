@@ -1,10 +1,7 @@
-import { derived, writable, type Writable } from "svelte/store";
-import { CardIdentity } from "./CardIdentity";
-import { Card } from "./Card";
+import { derived, writable, type Readable } from "svelte/store";
+import { CardIdentities } from "../game/CardIdentities";
 import { basicResource, levelOneResource, levelTwoResource, building } from "./data";
-import { CardType } from "./CardType";
-import type { ResourceCard } from "./typing/ResourceCard";
-import type { BuildingCard } from "./typing/BuildingCard";
+import { CardType, type BuildingCard, type ResourceCard, type CardIdentity } from "../game/typing";
 
 interface CardDataStore {
   [CardType.BASIC_RESOURCE]: ResourceCard[];
@@ -14,12 +11,6 @@ interface CardDataStore {
 }
 
 function customStore() {
-  const allData = [...basicResource, ...levelOneResource, ...levelTwoResource];
-  allData.forEach((item) => {
-    const cardIdentity = CardIdentity.create(item.cardType, item.typeId);
-    Card.create(cardIdentity, item.name, item.value);
-  });
-
   const initData: CardDataStore = {
     [CardType.BASIC_RESOURCE]: [],
     [CardType.LEVEL_ONE_RESOURCE]: [],
@@ -27,21 +18,7 @@ function customStore() {
     [CardType.BUILDING]: []
   };
 
-  allData.forEach((x) => {
-    const cardIdentity = CardIdentity.get(x.cardType, x.typeId);
-    const cost = x.cost.map((optCost) =>
-      optCost.map((x) => CardIdentity.get(x.cardType, x.typeId))
-    );
-    const capital = x.capital.map((x) => CardIdentity.get(x.cardType, x.typeId));
-
-    const item: ResourceCard = {
-      cardIdentity,
-      name: x.name,
-      value: x.value,
-      cost,
-      capital
-    };
-
+  [...basicResource, ...levelOneResource, ...levelTwoResource].forEach((item) => {
     const cardType = item.cardIdentity.cardType;
     if (cardType === CardType.BUILDING) {
       throw new Error("Wrong card type in raw data");
@@ -51,41 +28,6 @@ function customStore() {
   });
 
   building.forEach((item) => {
-    const cardIdentity = CardIdentity.create(item.cardType, item.typeId);
-    Card.create(cardIdentity, item.name, item.value);
-  });
-
-  building.forEach((x) => {
-    const cardIdentity = CardIdentity.get(x.cardType, x.typeId);
-    const cost = x.cost.map((optCost) =>
-      optCost.map((x) => CardIdentity.get(x.cardType, x.typeId))
-    );
-    const effectCost = x.effectCost.map((optCost) =>
-      optCost.map((x) => CardIdentity.get(x.cardType, x.typeId))
-    );
-    const effectCapital = x.effectCapital.map((x) => CardIdentity.get(x.cardType, x.typeId));
-    const effectProduct =
-      x.effectProduct === null
-        ? null
-        : CardIdentity.get(x.effectProduct.cardType, x.effectProduct.typeId);
-    const effectPoints = x.effectPoints ? x.effectPoints : null;
-    const specialEffect = x.specialEffect ? x.specialEffect : null;
-
-    const item: BuildingCard = {
-      cardIdentity,
-      name: x.name,
-      value: x.value,
-      cost,
-      isStartingBuilding: x.isStartingBuilding,
-      isExtension: x.isExtension,
-      points: x.points,
-      effectCost,
-      effectCapital,
-      effectProduct,
-      effectPoints,
-      specialEffect
-    };
-
     const cardType = item.cardIdentity.cardType;
     if (cardType !== CardType.BUILDING) {
       throw new Error("Wrong card type in raw data");
@@ -95,35 +37,26 @@ function customStore() {
   });
 
   const store = writable<CardDataStore>(initData);
-  const { subscribe, set, update } = store;
+  const { subscribe, update } = store;
 
   const updateResourceCard = (card: ResourceCard) => {
     update((x) => {
       const cardType = card.cardIdentity.cardType;
-      const index = x[cardType].findIndex(
-        (y) =>
-          y.cardIdentity.cardType === card.cardIdentity.cardType &&
-          y.cardIdentity.typeId === card.cardIdentity.typeId
-      );
+      const index = x[cardType].findIndex((y) => CardIdentities.equals(y.cardIdentity, card.cardIdentity));
       x[cardType][index] = card;
 
       return x;
     });
   };
 
-  const getName = derived(store, ($store) => (cardIdentity: CardIdentity) => {
+  const getName: Readable<(x: CardIdentity) => string> = derived(store, ($store) => (cardIdentity: CardIdentity) => {
     const cardType = cardIdentity.cardType;
     const arr: { cardIdentity: CardIdentity; name: string }[] = $store[cardType];
-    return arr.find((x) => x.cardIdentity === cardIdentity)?.name ?? "";
+    return arr.find((x) => CardIdentities.equals(x.cardIdentity, cardIdentity))?.name ?? "unknown";
   });
 
-  const getAllResourceCards = derived(store, ($store) => {
-    const arr: ResourceCard[] = [
-      ...$store[CardType.BASIC_RESOURCE],
-      ...$store[CardType.LEVEL_ONE_RESOURCE],
-      ...$store[CardType.LEVEL_TWO_RESOURCE]
-    ];
-    return arr;
+  const getAllResourceCards: Readable<ResourceCard[]> = derived(store, ($store) => {
+    return [...$store[CardType.BASIC_RESOURCE], ...$store[CardType.LEVEL_ONE_RESOURCE], ...$store[CardType.LEVEL_TWO_RESOURCE]];
   });
 
   return {

@@ -1,12 +1,12 @@
 <script lang="ts">
   import Table from "$lib/Table/Table.svelte";
-  import { cardTypeTranslator } from "../store/CardType";
   import type { GridColDef } from "$lib/Table/typing";
-  import type { BuildingCard } from "../store/typing/BuildingCard";
-  import type { CardIdentity } from "../store/CardIdentity";
-  import { Card } from "../store/Card";
+  import { cardTypeTranslator } from "../game/translator";
+  import type { BuildingCard, CardIdentity } from "../game/typing";
+  import { cardDataStore } from "../store/cardData";
 
   export let data: BuildingCard[];
+  $: getName = cardDataStore.getName;
 
   const columns: GridColDef[] = [
     {
@@ -75,14 +75,14 @@
       points: x.points,
       effectCost: x.effectCost.map((optCost) => cardIdentityArrToNames(optCost)),
       effectCapital: cardIdentityArrToNames(x.effectCapital),
-      effectProduct: x.effectProduct ? Card.getName(x.effectProduct) : null,
+      effectProduct: x.effectProduct ? $getName(x.effectProduct) : null,
       effectPoints: x.effectPoints,
       specialEffect: x.specialEffect
     };
   });
 
   function cardIdentityArrToNames(ids: CardIdentity[]): string[] {
-    return ids.map((id) => Card.getName(id));
+    return ids.map((id) => $getName(id));
   }
 </script>
 

@@ -1,11 +1,11 @@
 <script lang="ts">
   import Modal from "$lib/Modal.svelte";
-  import { CardType } from "../store/CardType";
+  import { CardType } from "../game/typing";
   import { resourceCardModalStore } from "../store/resourceCardModal";
   import ResourceCardSelector from "$lib/ResourceCardSelector.svelte";
 
-  $: open = $resourceCardModalStore.open;
   $: data = $resourceCardModalStore.data;
+  $: open = data !== null;
 
   const onOk = () => {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion data must be defined when modal is open
@@ -70,8 +70,7 @@
             <ResourceCardSelector
               selectedTags={optCost}
               handleAdd={(x) => updateCost(index, [...optCost, x])}
-              handleRemove={(x) =>
-                updateCost(index, [...optCost.slice(0, x), ...optCost.slice(x + 1)])}
+              handleRemove={(x) => updateCost(index, [...optCost.slice(0, x), ...optCost.slice(x + 1)])}
             />
           {/each}
         </div>
@@ -81,8 +80,7 @@
           <ResourceCardSelector
             selectedTags={data.capital}
             handleAdd={(x) => data && updateCapital([...data.capital, x])}
-            handleRemove={(x) =>
-              data && updateCapital([...data.capital.slice(0, x), ...data.capital.slice(x + 1)])}
+            handleRemove={(x) => data && updateCapital([...data.capital.slice(0, x), ...data.capital.slice(x + 1)])}
           />
         </div>
       </form>

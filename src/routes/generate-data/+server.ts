@@ -1,8 +1,8 @@
 import fs from "fs";
 import path from "path";
-import type { ResourceCard } from "../../store/typing/ResourceCard";
-import type { BuildingCard } from "../../store/typing/BuildingCard";
-import type { CardQuantity } from "../../store/typing/CardQuantity";
+import type { ResourceCard } from "../../game/typing/ResourceCard";
+import type { BuildingCard } from "../../game/typing/BuildingCard";
+import type { CardQuantity } from "../../game/typing/CardQuantity";
 import type { RequestEvent } from "@sveltejs/kit";
 import type { GenerateDataRequestBody } from "./typing";
 

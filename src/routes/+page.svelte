@@ -2,15 +2,13 @@
   import "../app.css";
   import { cardDataStore } from "../store/cardData";
   import { cardQuantityStore } from "../store/cardQuantity";
-  import { CardType } from "../store/CardType";
+  import { CardType } from "../game/typing";
   import ResourceCardTable from "./ResourceCardTable.svelte";
   import BuildingCardTable from "./BuildingCardTable.svelte";
   import CardQuantityTable from "./CardQuantityTable.svelte";
   import { checkSchema } from "./generate-data/zod-check";
   import ResourceCardDataModal from "./ResourceCardDataModal.svelte";
-  import Tag from "$lib/Tag.svelte";
   import type { GenerateDataRequestBody } from "./generate-data/typing";
-  import TagSelector from "$lib/TagSelector.svelte";
 
   $: basicResource = $cardDataStore[CardType.BASIC_RESOURCE];
   $: levelOneResource = $cardDataStore[CardType.LEVEL_ONE_RESOURCE];

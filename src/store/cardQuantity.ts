@@ -1,38 +1,29 @@
 import { writable } from "svelte/store";
-import { CardIdentity } from "./CardIdentity";
-import {
-  basicResourceQuantity,
-  levelOneResourceQuantity,
-  levelTwoResourceQuantity,
-  buildingQuantity
-} from "./data";
-import type { CardQuantity } from "./typing/CardQuantity";
+import { CardIdentities } from "../game/CardIdentities";
+import { basicResourceQuantity, levelOneResourceQuantity, levelTwoResourceQuantity, buildingQuantity } from "./data";
+import type { CardIdentity, CardQuantity } from "../game/typing";
 
 export type CardQuantityStore = CardQuantity[];
 
 function customStore() {
-  const allData = [
-    ...basicResourceQuantity,
-    ...levelOneResourceQuantity,
-    ...levelTwoResourceQuantity,
-    ...buildingQuantity
-  ];
-  const initData: CardQuantityStore = [];
+  const initData = [...basicResourceQuantity, ...levelOneResourceQuantity, ...levelTwoResourceQuantity, ...buildingQuantity];
+  const { subscribe, update } = writable<CardQuantityStore>(initData);
 
-  allData.forEach((x) => {
-    const cardQuantity: CardQuantity = {
-      cardIdentity: CardIdentity.get(x.cardIdentity.cardType, x.cardIdentity.typeId),
-      twoPlayers: x.twoPlayers,
-      threePlayers: x.threePlayers,
-      fourPlayers: x.fourPlayers
-    };
-    initData.push(cardQuantity);
-  });
-
-  const { subscribe, set, update } = writable<CardQuantityStore>(initData);
+  const updateCardQuantity = (updated: Partial<CardQuantity> & { cardIdentity: CardIdentity }) => {
+    update((state) => {
+      const index = state.findIndex((x) => CardIdentities.equals(x.cardIdentity, updated.cardIdentity));
+      if (index === -1) throw new Error("CardIdentity not found in cardQuantityStore");
+      state[index] = {
+        ...state[index],
+        ...updated
+      };
+      return state;
+    });
+  };
 
   return {
-    subscribe
+    subscribe,
+    updateCardQuantity
   };
 }
 

@@ -1,10 +1,9 @@
 <script lang="ts">
   import TagSelector from "./TagSelector.svelte";
   import { cardDataStore } from "../store/cardData";
+  import { CardType } from "../game/typing";
   import type { TagColor } from "$lib/TagSelector.svelte";
-  import { CardType } from "../store/CardType";
-  import { CardIdentity } from "../store/CardIdentity";
-  import { get } from "svelte/store";
+  import type { CardIdentity } from "../game/typing";
 
   export let selectedTags: CardIdentity[];
   export let handleAdd: (tag: CardIdentity) => void;
@@ -30,14 +29,7 @@
   };
 </script>
 
-<TagSelector
-  {selectedTags}
-  {availableTags}
-  handleAdd={(newValue) => handleAdd(CardIdentity.get(newValue.cardType, newValue.typeId))}
-  {handleRemove}
-  {getLabel}
-  {getColor}
->
+<TagSelector {selectedTags} {availableTags} {handleAdd} {handleRemove} {getLabel} {getColor}>
   <svelte:fragment slot="options">
     <option disabled selected> -- select a resource -- </option>
     <option disabled>Basic</option>

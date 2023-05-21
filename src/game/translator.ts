@@ -1,9 +1,4 @@
-export enum CardType {
-  BASIC_RESOURCE = 0,
-  LEVEL_ONE_RESOURCE = 1,
-  LEVEL_TWO_RESOURCE = 2,
-  BUILDING = 3
-}
+import { CardType } from "./typing";
 
 export function cardTypeTranslator(cardType: CardType): string {
   switch (cardType) {
