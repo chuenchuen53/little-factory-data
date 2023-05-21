@@ -1,10 +1,8 @@
 import fs from "fs";
 import path from "path";
-import type { ResourceCard } from "../../game/typing/ResourceCard";
-import type { BuildingCard } from "../../game/typing/BuildingCard";
-import type { CardQuantity } from "../../game/typing/CardQuantity";
 import type { RequestEvent } from "@sveltejs/kit";
 import type { GenerateDataRequestBody } from "./typing";
+import type { BuildingCard, CardQuantity, ResourceCard } from "../../game/typing";
 
 const outputDir = path.resolve("output/generated-data");
 if (!fs.existsSync(outputDir)) {
@@ -17,13 +15,7 @@ function generateFile(data: (ResourceCard | BuildingCard | CardQuantity)[], file
 
 export async function POST(event: RequestEvent) {
   const req = event.request;
-  const {
-    basicResource,
-    levelOneResource,
-    levelTwoResource,
-    building,
-    cardQuantity
-  }: GenerateDataRequestBody = await req.json();
+  const { basicResource, levelOneResource, levelTwoResource, building, cardQuantity }: GenerateDataRequestBody = await req.json();
   generateFile(basicResource, "basicResource.json");
   generateFile(levelOneResource, "levelOneResource.json");
   generateFile(levelTwoResource, "levelTwoResource.json");

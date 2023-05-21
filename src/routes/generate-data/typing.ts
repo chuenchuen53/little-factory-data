@@ -1,6 +1,4 @@
-import type { ResourceCard } from "../../game/typing/ResourceCard";
-import type { BuildingCard } from "../../game/typing/BuildingCard";
-import type { CardQuantity } from "../../game/typing/CardQuantity";
+import type { BuildingCard, CardQuantity, ResourceCard } from "../../game/typing";
 
 export interface GenerateDataRequestBody {
   basicResource: ResourceCard[];
