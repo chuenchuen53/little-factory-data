@@ -1,4 +1,4 @@
-export interface GridColDef {
-  field: string;
+export interface GridColDef<T extends object> {
+  field: keyof T;
   headerName: string;
 }

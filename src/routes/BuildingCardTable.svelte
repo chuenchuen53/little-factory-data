@@ -1,14 +1,25 @@
-<script lang="ts">
-  import Table from "$lib/Table/Table.svelte";
-  import type { GridColDef } from "$lib/Table/typing";
-  import { cardTypeTranslator } from "../game/translator";
-  import type { BuildingCard, CardIdentity } from "../game/typing";
-  import { cardDataStore } from "../store/cardData";
+<script lang="ts" context="module">
+  import type { CardType } from "../game/typing";
 
-  export let data: BuildingCard[];
-  $: getName = cardDataStore.getName;
+  interface Row {
+    cardType: CardType;
+    typeId: number;
+    name: string;
+    value: number;
+    cost: string[][];
+    isStartingBuilding: boolean;
+    isExtension: boolean;
+    points: number;
+    effectCost: string[][];
+    effectCapital: string[];
+    effectProduct: string | null;
+    effectPoints: number | null;
+    specialEffect: string | null;
+  }
 
-  const columns: GridColDef[] = [
+  type Column = GridColDef<Row>;
+
+  const columns: Column[] = [
     {
       field: "cardType",
       headerName: "Card Type"
@@ -62,24 +73,33 @@
       headerName: "Special Effect"
     }
   ];
+</script>
 
-  $: rows = data.map((x) => {
-    return {
-      cardType: x.cardIdentity.cardType,
-      typeId: x.cardIdentity.typeId,
-      name: x.name,
-      value: x.value,
-      cost: x.cost.map((optCost) => cardIdentityArrToNames(optCost)),
-      isStartingBuilding: x.isStartingBuilding,
-      isExtension: x.isExtension,
-      points: x.points,
-      effectCost: x.effectCost.map((optCost) => cardIdentityArrToNames(optCost)),
-      effectCapital: cardIdentityArrToNames(x.effectCapital),
-      effectProduct: x.effectProduct ? $getName(x.effectProduct) : null,
-      effectPoints: x.effectPoints,
-      specialEffect: x.specialEffect
-    };
-  });
+<script lang="ts">
+  import Table from "$lib/Table/Table.svelte";
+  import type { GridColDef } from "$lib/Table/typing";
+  import { cardTypeTranslator } from "../game/translator";
+  import type { BuildingCard, CardIdentity } from "../game/typing";
+  import { cardDataStore } from "../store/cardData";
+
+  export let data: BuildingCard[];
+  $: getName = cardDataStore.getName;
+
+  $: rows = data.map((x) => ({
+    cardType: x.cardIdentity.cardType,
+    typeId: x.cardIdentity.typeId,
+    name: x.name,
+    value: x.value,
+    cost: x.cost.map((optCost) => cardIdentityArrToNames(optCost)),
+    isStartingBuilding: x.isStartingBuilding,
+    isExtension: x.isExtension,
+    points: x.points,
+    effectCost: x.effectCost.map((optCost) => cardIdentityArrToNames(optCost)),
+    effectCapital: cardIdentityArrToNames(x.effectCapital),
+    effectProduct: x.effectProduct ? $getName(x.effectProduct) : null,
+    effectPoints: x.effectPoints,
+    specialEffect: x.specialEffect
+  }));
 
   function cardIdentityArrToNames(ids: CardIdentity[]): string[] {
     return ids.map((id) => $getName(id));
@@ -87,31 +107,31 @@
 </script>
 
 <Table {columns} {rows}>
-  <svelte:fragment slot="cell" let:field let:cellData>
+  <svelte:fragment slot="cell" let:field let:rowData>
     {#if field === "cardType"}
-      {cardTypeTranslator(cellData)}
+      {cardTypeTranslator(rowData.cardType)}
     {:else if field === "cost"}
-      {#each cellData as optCost}
+      {#each rowData.cost as optCost}
         <div>{optCost.join(", ")}</div>
       {/each}
     {:else if field === "isStartingBuilding"}
-      {cellData ? cellData : ""}
+      {rowData.isStartingBuilding ? rowData.isStartingBuilding : ""}
     {:else if field === "isExtension"}
-      {cellData ? cellData : ""}
+      {rowData.isExtension ? rowData.isExtension : ""}
     {:else if field === "effectCost"}
-      {#each cellData as optCost}
+      {#each rowData.effectCost as optCost}
         <div>{optCost.join(", ")}</div>
       {/each}
     {:else if field === "effectCapital"}
-      {cellData.join(", ")}
+      {rowData.effectCapital.join(", ")}
     {:else if field === "effectProduct"}
-      {cellData ? cellData : ""}
+      {rowData.effectProduct ? rowData.effectProduct : ""}
     {:else if field === "effectPoints"}
-      {cellData ? cellData : ""}
+      {rowData.effectPoints ? rowData.effectPoints : ""}
     {:else if field === "specialEffect"}
-      {cellData ? cellData : ""}
+      {rowData.specialEffect ? rowData.specialEffect : ""}
     {:else}
-      {cellData}
+      {rowData[field]}
     {/if}
   </svelte:fragment>
 </Table>

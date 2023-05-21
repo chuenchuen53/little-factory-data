@@ -1,14 +1,18 @@
-<script lang="ts">
-  import Table from "$lib/Table/Table.svelte";
-  import type { GridColDef } from "$lib/Table/typing";
-  import { cardTypeTranslator } from "../game/translator";
-  import type { CardQuantity } from "../game/typing";
-  import { cardDataStore } from "../store/cardData";
+<script lang="ts" context="module">
+  import type { CardType } from "../game/typing";
 
-  export let data: CardQuantity[];
-  $: getName = cardDataStore.getName;
+  interface Row {
+    cardType: CardType;
+    typeId: number;
+    name: string;
+    twoPlayers: number;
+    threePlayers: number;
+    fourPlayers: number;
+  }
 
-  const columns: GridColDef[] = [
+  type Column = GridColDef<Row>;
+
+  const columns: Column[] = [
     {
       field: "cardType",
       headerName: "Card Type"
@@ -34,25 +38,34 @@
       headerName: "4 Players"
     }
   ];
+</script>
 
-  $: rows = data.map((x) => {
-    return {
-      cardType: x.cardIdentity.cardType,
-      typeId: x.cardIdentity.typeId,
-      name: $getName(x.cardIdentity),
-      twoPlayers: x.twoPlayers,
-      threePlayers: x.threePlayers,
-      fourPlayers: x.fourPlayers
-    };
-  });
+<script lang="ts">
+  import Table from "$lib/Table/Table.svelte";
+  import type { GridColDef } from "$lib/Table/typing";
+  import { cardTypeTranslator } from "../game/translator";
+  import type { CardQuantity } from "../game/typing";
+  import { cardDataStore } from "../store/cardData";
+
+  export let data: CardQuantity[];
+  $: getName = cardDataStore.getName;
+
+  $: rows = data.map((x) => ({
+    cardType: x.cardIdentity.cardType,
+    typeId: x.cardIdentity.typeId,
+    name: $getName(x.cardIdentity),
+    twoPlayers: x.twoPlayers,
+    threePlayers: x.threePlayers,
+    fourPlayers: x.fourPlayers
+  }));
 </script>
 
 <Table {columns} {rows}>
-  <svelte:fragment slot="cell" let:field let:cellData>
+  <svelte:fragment slot="cell" let:field let:rowData>
     {#if field === "cardType"}
-      {cardTypeTranslator(cellData)}
+      {cardTypeTranslator(rowData.cardType)}
     {:else}
-      {cellData}
+      {rowData[field]}
     {/if}
   </svelte:fragment>
 </Table>

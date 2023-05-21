@@ -1,18 +1,20 @@
-<script lang="ts">
-  import Table from "$lib/Table/Table.svelte";
+<script lang="ts" context="module">
   import type { GridColDef } from "$lib/Table/typing";
-  import Fa from "svelte-fa";
-  import { faEdit } from "@fortawesome/free-solid-svg-icons";
-  import { resourceCardModalStore } from "../store/resourceCardModal";
-  import { cardDataStore } from "../store/cardData";
-  import type { CardIdentity, CardType, ResourceCard } from "../game/typing";
-  import { cardTypeTranslator } from "../game/translator";
-  import { CardIdentities } from "../game/CardIdentities";
+  import type { CardIdentity } from "../game/typing";
 
-  export let data: ResourceCard[];
-  $: getName = cardDataStore.getName;
+  interface Row {
+    cardType: CardType;
+    typeId: number;
+    name: string;
+    value: number;
+    cost: string[][];
+    capital: string[];
+    edit: () => void;
+  }
 
-  const columns: GridColDef[] = [
+  type Column = GridColDef<Row>;
+
+  const columns: Column[] = [
     {
       field: "cardType",
       headerName: "Card Type"
@@ -42,45 +44,52 @@
       headerName: "Edit"
     }
   ];
+</script>
 
-  $: rows = data.map((x) => {
-    return {
-      cardType: x.cardIdentity.cardType,
-      typeId: x.cardIdentity.typeId,
-      name: x.name,
-      value: x.value,
-      cost: x.cost.map((optCost) => cardIdentityArrToNames(optCost)),
-      capital: cardIdentityArrToNames(x.capital)
-    };
-  });
+<script lang="ts">
+  import Table from "$lib/Table/Table.svelte";
+  import Fa from "svelte-fa";
+  import { faEdit } from "@fortawesome/free-solid-svg-icons";
+  import { resourceCardModalStore } from "../store/resourceCardModal";
+  import { cardDataStore } from "../store/cardData";
+  import type { CardType, ResourceCard } from "../game/typing";
+  import { cardTypeTranslator } from "../game/translator";
+
+  export let data: ResourceCard[];
+
+  $: getName = cardDataStore.getName;
+
+  $: rows = data.map((x) => ({
+    cardType: x.cardIdentity.cardType,
+    typeId: x.cardIdentity.typeId,
+    name: x.name,
+    value: x.value,
+    cost: x.cost.map((optCost) => cardIdentityArrToNames(optCost)),
+    capital: cardIdentityArrToNames(x.capital),
+    edit: () => resourceCardModalStore.openModal(x)
+  })) satisfies Row[];
 
   function cardIdentityArrToNames(ids: CardIdentity[]): string[] {
     return ids.map((id) => $getName(id));
   }
-
-  const openResourceCardEditModal = (cardIdentity: CardIdentity) => {
-    const card = data.find((x) => CardIdentities.equals(x.cardIdentity, cardIdentity));
-    if (!card) throw new Error("Card not found");
-    resourceCardModalStore.openModal(card);
-  };
 </script>
 
 <Table {columns} {rows}>
-  <svelte:fragment slot="cell" let:field let:rowData let:cellData>
+  <svelte:fragment slot="cell" let:field let:rowData>
     {#if field === "cardType"}
-      {cardTypeTranslator(cellData)}
+      {cardTypeTranslator(rowData.cardType)}
     {:else if field === "cost"}
-      {#each cellData as optCost}
+      {#each rowData.cost as optCost}
         <div>{optCost.join(", ")}</div>
       {/each}
     {:else if field === "capital"}
-      {cellData.join(", ")}
+      {rowData.capital.join(", ")}
     {:else if field === "edit"}
-      <button on:click={() => openResourceCardEditModal({ cardType: rowData.cardType, typeId: rowData.typeId })}>
+      <button on:click={rowData.edit}>
         <Fa icon={faEdit} />
       </button>
     {:else}
-      {cellData}
+      {rowData[field]}
     {/if}
   </svelte:fragment>
 </Table>
