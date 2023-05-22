@@ -9,7 +9,7 @@
 
 <div class="relative overflow-x-auto shadow rounded-lg">
   <table class="w-full text-left">
-    <thead class="text-white bg-gray-700">
+    <thead class="align-top text-white bg-gray-700">
       <tr>
         {#each columns as column (column.field)}
           <th scope="col" class="px-6 py-3">
@@ -18,7 +18,7 @@
         {/each}
       </tr>
     </thead>
-    <tbody>
+    <tbody class="align-top">
       {#each rows as row}
         <tr class="border-b border-gray-700 text-gray-200 bg-gray-800 hover:bg-gray-600 whitespace-nowrap">
           {#each columns as column}

@@ -1,4 +1,6 @@
 <script lang="ts">
+  import Fa from "svelte-fa";
+  import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
   import Modal from "$lib/Modal.svelte";
   import { CardType } from "../game/typing";
   import { resourceCardModalStore } from "../store/resourceCardModal";
@@ -16,7 +18,7 @@
     resourceCardModalStore.closeModal();
   };
 
-  const { updateCost, updateCapital } = resourceCardModalStore;
+  const { updateCost, updateCapital, addOptCost, removeOptCost } = resourceCardModalStore;
 </script>
 
 {#if open && data}
@@ -67,12 +69,20 @@
         <label for="cost-input">Cost:</label>
         <div>
           {#each data.cost as optCost, index (index)}
-            <ResourceCardSelector
-              selectedTags={optCost}
-              handleAdd={(x) => updateCost(index, [...optCost, x])}
-              handleRemove={(x) => updateCost(index, [...optCost.slice(0, x), ...optCost.slice(x + 1)])}
-            />
+            <div class="flex gap-2">
+              <ResourceCardSelector
+                selectedTags={optCost}
+                handleAdd={(x) => updateCost(index, [...optCost, x])}
+                handleRemove={(x) => updateCost(index, [...optCost.slice(0, x), ...optCost.slice(x + 1)])}
+              />
+              <button on:click={() => removeOptCost(index)}>
+                <Fa icon={faMinus} />
+              </button>
+            </div>
           {/each}
+          <button class="my-2" on:click={addOptCost}>
+            <Fa icon={faPlus} />
+          </button>
         </div>
 
         <label for="capital-input">Capital:</label>

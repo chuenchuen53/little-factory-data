@@ -27,7 +27,6 @@ function customStore() {
 
   const updateCost = (index: number, optCost: CardIdentity[]) => {
     update((x) => ({
-      ...x,
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- only can call if data is not null
       data: { ...x.data!, cost: x.data!.cost.map((x, i) => (i === index ? optCost : x)) }
     }));
@@ -35,7 +34,21 @@ function customStore() {
 
   const updateCapital = (capital: CardIdentity[]) => {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    update((x) => ({ ...x, data: { ...x.data!, capital } }));
+    update((x) => ({ data: { ...x.data!, capital } }));
+  };
+
+  const addOptCost = () => {
+    update((x) => ({
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- only can call if data is not null
+      data: { ...x.data!, cost: [...x.data!.cost, []] }
+    }));
+  };
+
+  const removeOptCost = (index: number) => {
+    update((x) => ({
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- only can call if data is not null
+      data: { ...x.data!, cost: x.data!.cost.filter((_, i) => i !== index) }
+    }));
   };
 
   return {
@@ -44,7 +57,9 @@ function customStore() {
     closeModal,
     confirmChange,
     updateCost,
-    updateCapital
+    updateCapital,
+    addOptCost,
+    removeOptCost
   };
 }
 
