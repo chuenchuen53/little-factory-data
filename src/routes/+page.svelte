@@ -8,6 +8,7 @@
   import CardQuantityTable from "./CardQuantityTable.svelte";
   import { checkSchema } from "./generate-data/zod-check";
   import ResourceCardDataModal from "./ResourceCardDataModal.svelte";
+  import BuildingCardDataModal from "./BuildingCardDataModal.svelte";
   import type { GenerateDataRequestBody } from "./generate-data/typing";
 
   $: basicResource = $cardDataStore[CardType.BASIC_RESOURCE];
@@ -52,6 +53,7 @@
   <div class="my-6"><CardQuantityTable data={$cardQuantityStore} /></div>
 
   <ResourceCardDataModal />
+  <BuildingCardDataModal />
 </div>
 
 <style lang="postcss">

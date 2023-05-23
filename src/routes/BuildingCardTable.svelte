@@ -15,6 +15,7 @@
     effectProduct: string | null;
     effectPoints: number | null;
     specialEffect: string | null;
+    edit: () => void;
   }
 
   type Column = GridColDef<Row>;
@@ -71,6 +72,10 @@
     {
       field: "specialEffect",
       headerName: "Special Effect"
+    },
+    {
+      field: "edit",
+      headerName: "Edit"
     }
   ];
 </script>
@@ -81,6 +86,9 @@
   import { cardTypeTranslator } from "../game/translator";
   import type { BuildingCard, CardIdentity } from "../game/typing";
   import { cardDataStore } from "../store/cardData";
+  import { buildingCardModalStore } from "../store/buildingCardModal";
+  import Fa from "svelte-fa";
+  import { faEdit } from "@fortawesome/free-solid-svg-icons";
 
   export let data: BuildingCard[];
   $: getName = cardDataStore.getName;
@@ -98,8 +106,9 @@
     effectCapital: cardIdentityArrToNames(x.effectCapital),
     effectProduct: x.effectProduct ? $getName(x.effectProduct) : null,
     effectPoints: x.effectPoints,
-    specialEffect: x.specialEffect
-  }));
+    specialEffect: x.specialEffect,
+    edit: () => buildingCardModalStore.openModal(x)
+  })) satisfies Row[];
 
   function cardIdentityArrToNames(ids: CardIdentity[]): string[] {
     return ids.map((id) => $getName(id));
@@ -130,6 +139,10 @@
       {rowData.effectPoints ? rowData.effectPoints : ""}
     {:else if field === "specialEffect"}
       {rowData.specialEffect ? rowData.specialEffect : ""}
+    {:else if field === "edit"}
+      <button on:click={rowData.edit}>
+        <Fa icon={faEdit} />
+      </button>
     {:else}
       {rowData[field]}
     {/if}

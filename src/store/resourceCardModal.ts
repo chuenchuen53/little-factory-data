@@ -32,11 +32,6 @@ function customStore() {
     }));
   };
 
-  const updateCapital = (capital: CardIdentity[]) => {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    update((x) => ({ data: { ...x.data!, capital } }));
-  };
-
   const addOptCost = () => {
     update((x) => ({
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- only can call if data is not null
@@ -50,6 +45,10 @@ function customStore() {
       data: { ...x.data!, cost: x.data!.cost.filter((_, i) => i !== index) }
     }));
   };
+  const updateCapital = (capital: CardIdentity[]) => {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    update((x) => ({ data: { ...x.data!, capital } }));
+  };
 
   return {
     subscribe,
@@ -57,9 +56,9 @@ function customStore() {
     closeModal,
     confirmChange,
     updateCost,
-    updateCapital,
     addOptCost,
-    removeOptCost
+    removeOptCost,
+    updateCapital
   };
 }
 

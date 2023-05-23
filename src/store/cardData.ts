@@ -49,6 +49,15 @@ function customStore() {
     });
   };
 
+  const updateBuildingCard = (card: BuildingCard) => {
+    update((x) => {
+      const index = x[CardType.BUILDING].findIndex((y) => CardIdentities.equals(y.cardIdentity, card.cardIdentity));
+      x[CardType.BUILDING][index] = card;
+
+      return x;
+    });
+  };
+
   const getName: Readable<(x: CardIdentity) => string> = derived(store, ($store) => (cardIdentity: CardIdentity) => {
     const cardType = cardIdentity.cardType;
     const arr: { cardIdentity: CardIdentity; name: string }[] = $store[cardType];
@@ -62,6 +71,7 @@ function customStore() {
   return {
     subscribe,
     updateResourceCard,
+    updateBuildingCard,
     getName,
     getAllResourceCards
   };
