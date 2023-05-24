@@ -1,5 +1,5 @@
 <script lang="ts" context="module">
-  import type { CardType } from "../game/typing";
+  import { CardType } from "../game/typing";
 
   interface Row {
     cardType: CardType;
@@ -46,6 +46,9 @@
   import { cardTypeTranslator } from "../game/translator";
   import type { CardQuantity } from "../game/typing";
   import { cardDataStore } from "../store/cardData";
+  import NumberInput from "$lib/NumberInput.svelte";
+  import type { CardIdentities } from "../game/CardIdentities";
+  import { cardQuantityStore } from "../store/cardQuantity";
 
   export let data: CardQuantity[];
   $: getName = cardDataStore.getName;
@@ -64,6 +67,17 @@
   <svelte:fragment slot="cell" let:field let:rowData>
     {#if field === "cardType"}
       {cardTypeTranslator(rowData.cardType)}
+    {:else if field === "twoPlayers" || field === "threePlayers" || field === "fourPlayers"}
+      <NumberInput
+        value={rowData[field]}
+        setValue={(newValue) => {
+          cardQuantityStore.updateCardQuantity({
+            cardIdentity: { cardType: rowData.cardType, typeId: rowData.typeId },
+            [field]: Math.max(1, newValue)
+          });
+        }}
+        disabled={rowData.cardType === CardType.LEVEL_TWO_RESOURCE || rowData.cardType === CardType.BUILDING}
+      />
     {:else}
       {rowData[field]}
     {/if}
