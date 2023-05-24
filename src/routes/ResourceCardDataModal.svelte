@@ -5,6 +5,7 @@
   import { CardType } from "../game/typing";
   import { resourceCardModalStore } from "../store/resourceCardModal";
   import ResourceCardSelector from "$lib/ResourceCardSelector.svelte";
+  import IconButton from "$lib/IconButton.svelte";
 
   $: data = $resourceCardModalStore.data;
   $: open = data !== null;
@@ -69,20 +70,20 @@
         <label for="cost-input">Cost:</label>
         <div>
           {#each data.cost as optCost, index (index)}
-            <div class="flex gap-2">
+            <div class="flex gap-2 items-center">
               <ResourceCardSelector
                 selectedTags={optCost}
                 handleAdd={(x) => updateCost(index, [...optCost, x])}
                 handleRemove={(x) => updateCost(index, [...optCost.slice(0, x), ...optCost.slice(x + 1)])}
               />
-              <button on:click={() => removeOptCost(index)}>
+              <IconButton on:click={() => removeOptCost(index)}>
                 <Fa icon={faMinus} />
-              </button>
+              </IconButton>
             </div>
           {/each}
-          <button class="my-2" on:click={addOptCost}>
+          <IconButton class="my-4" on:click={addOptCost}>
             <Fa icon={faPlus} />
-          </button>
+          </IconButton>
         </div>
 
         <label for="capital-input">Capital:</label>

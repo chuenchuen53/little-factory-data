@@ -54,6 +54,7 @@
   import { cardDataStore } from "../store/cardData";
   import type { CardType, ResourceCard } from "../game/typing";
   import { cardTypeTranslator } from "../game/translator";
+  import IconButton from "$lib/IconButton.svelte";
 
   export let data: ResourceCard[];
 
@@ -85,9 +86,9 @@
     {:else if field === "capital"}
       {rowData.capital.join(", ")}
     {:else if field === "edit"}
-      <button on:click={rowData.edit}>
+      <IconButton on:click={rowData.edit}>
         <Fa icon={faEdit} />
-      </button>
+      </IconButton>
     {:else}
       {rowData[field]}
     {/if}

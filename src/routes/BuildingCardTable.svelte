@@ -89,6 +89,7 @@
   import { buildingCardModalStore } from "../store/buildingCardModal";
   import Fa from "svelte-fa";
   import { faEdit } from "@fortawesome/free-solid-svg-icons";
+  import IconButton from "$lib/IconButton.svelte";
 
   export let data: BuildingCard[];
   $: getName = cardDataStore.getName;
@@ -140,9 +141,9 @@
     {:else if field === "specialEffect"}
       {rowData.specialEffect ? rowData.specialEffect : ""}
     {:else if field === "edit"}
-      <button on:click={rowData.edit}>
+      <IconButton on:click={rowData.edit}>
         <Fa icon={faEdit} />
-      </button>
+      </IconButton>
     {:else}
       {rowData[field]}
     {/if}

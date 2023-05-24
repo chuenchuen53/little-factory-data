@@ -11,6 +11,7 @@
   import BuildingCardDataModal from "./BuildingCardDataModal.svelte";
   import type { GenerateDataRequestBody } from "./generate-data/typing";
   import NumberInput from "$lib/NumberInput.svelte";
+  import Button from "$lib/Button.svelte";
 
   $: basicResource = $cardDataStore[CardType.BASIC_RESOURCE];
   $: levelOneResource = $cardDataStore[CardType.LEVEL_ONE_RESOURCE];
@@ -39,12 +40,7 @@
 
 <div class="m-6">
   <div class="text-right">
-    <button
-      on:click={generate}
-      type="button"
-      class="text-white font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-blue-800"
-      >Generate</button
-    >
+    <Button on:click={generate}>Generate</Button>
   </div>
 
   <div class="my-6"><ResourceCardTable data={basicResource} /></div>

@@ -6,6 +6,7 @@
   import { buildingCardModalStore } from "../store/buildingCardModal";
   import ResourceCardSelector from "$lib/ResourceCardSelector.svelte";
   import { cardDataStore } from "../store/cardData";
+  import IconButton from "$lib/IconButton.svelte";
 
   $: data = $buildingCardModalStore.data;
   $: open = data !== null;
@@ -96,20 +97,20 @@
         <label for="cost-input">Cost:</label>
         <div>
           {#each data.cost as optCost, index (index)}
-            <div class="flex gap-2">
+            <div class="flex gap-2 items-center">
               <ResourceCardSelector
                 selectedTags={optCost}
                 handleAdd={(x) => updateCost(index, [...optCost, x])}
                 handleRemove={(x) => updateCost(index, [...optCost.slice(0, x), ...optCost.slice(x + 1)])}
               />
-              <button on:click={() => removeOptCost(index)}>
+              <IconButton on:click={() => removeOptCost(index)}>
                 <Fa icon={faMinus} />
-              </button>
+              </IconButton>
             </div>
           {/each}
-          <button class="my-2" on:click={addOptCost}>
+          <IconButton on:click={addOptCost} class="my-4">
             <Fa icon={faPlus} />
-          </button>
+          </IconButton>
         </div>
 
         <label for="is-starting-input">Staring Building:</label>
@@ -136,20 +137,20 @@
         <label for="effect-cost-input">Effect Cost:</label>
         <div>
           {#each data.effectCost as optCost, index (index)}
-            <div class="flex gap-2">
+            <div class="flex gap-2 items-center">
               <ResourceCardSelector
                 selectedTags={optCost}
                 handleAdd={(x) => updateEffectCost(index, [...optCost, x])}
                 handleRemove={(x) => updateEffectCost(index, [...optCost.slice(0, x), ...optCost.slice(x + 1)])}
               />
-              <button on:click={() => removeOptEffectCost(index)}>
+              <IconButton on:click={() => removeOptEffectCost(index)}>
                 <Fa icon={faMinus} />
-              </button>
+              </IconButton>
             </div>
           {/each}
-          <button class="my-2" on:click={addOptEffectCost}>
+          <IconButton on:click={addOptEffectCost} class="my-4">
             <Fa icon={faPlus} />
-          </button>
+          </IconButton>
         </div>
 
         <label for="effect-capital-input">Effect Capital:</label>

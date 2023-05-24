@@ -3,6 +3,7 @@
 </script>
 
 <script lang="ts">
+  import Button from "./Button.svelte";
   import Tag from "./Tag.svelte";
   type T = $$Generic;
 
@@ -32,11 +33,13 @@
       dropDownOpen = false;
     }
   };
+
+  const closeDropdown = () => {
+    dropDownOpen = false;
+  };
 </script>
 
-<div
-  class="min-h-[42px] w-full bg-gray-700 border border-gray-600 flex p-2 rounded-md flex-wrap gap-2"
->
+<div class="min-h-[42px] w-full bg-gray-700 border border-gray-600 flex p-2 rounded-md flex-wrap gap-2">
   {#each selectedTags as tag, index (index)}
     <Tag
       label={getLabel(tag)}
@@ -61,19 +64,11 @@
           </slot>
         </select>
         <span>
-          <button
-            class="w-5 h-5 text-white font-medium rounded-sm text-sm bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-blue-800"
-            on:click={() => {
-              dropDownOpen = false;
-            }}>-</button
-          >
+          <Button on:click={closeDropdown} class="h-6 w-6 px-0 py-0">-</Button>
         </span>
       </div>
     {:else}
-      <button
-        class="w-5 h-5 text-white font-medium rounded-sm text-sm bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-blue-800"
-        on:click={openDropdown}>+</button
-      >
+      <Button on:click={openDropdown} class="h-6 w-6 px-0 py-0">+</Button>
     {/if}
   </div>
 </div>
