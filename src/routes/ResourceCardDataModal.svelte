@@ -7,6 +7,7 @@
   import ResourceCardSelector from "$lib/ResourceCardSelector.svelte";
   import IconButton from "$lib/IconButton.svelte";
   import Input from "$lib/Input.svelte";
+  import Select from "$lib/Select.svelte";
 
   $: data = $resourceCardModalStore.data;
   $: open = data !== null;
@@ -29,17 +30,12 @@
     <div slot="body">
       <form class="grid grid-cols-2 gap-4">
         <label for="card-type-select">Card Type:</label>
-        <select
-          disabled
-          id="card-type-select"
-          value={data.cardIdentity.cardType}
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        >
+        <Select disabled id="card-type-select" value={data.cardIdentity.cardType}>
           <option value={CardType.BASIC_RESOURCE}>Basic Resource</option>
           <option value={CardType.LEVEL_ONE_RESOURCE}>Level One Resource</option>
           <option value={CardType.LEVEL_TWO_RESOURCE}>Level Two Resource</option>
           <option value={CardType.BUILDING}>Building</option>
-        </select>
+        </Select>
 
         <label for="type-id-input">Type Id:</label>
         <Input disabled id="type-id-input" type="number" min="1" value={data.cardIdentity.typeId} />

@@ -5,6 +5,7 @@
 <script lang="ts">
   import Button from "./Button.svelte";
   import Tag from "./Tag.svelte";
+  import Select from "./Select.svelte";
   type T = $$Generic;
 
   export let selectedTags: T[] = [];
@@ -52,17 +53,14 @@
   <div>
     {#if dropDownOpen}
       <div>
-        <select
-          on:change={handleSelectChange}
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        >
+        <Select on:change={handleSelectChange} class="!py-0">
           <slot name="options">
-            <option disabled selected value> -- select an option -- </option>
+            <option disabled selected value="@@PLACEHOLDER"> -- select an option -- </option>
             {#each availableTags as tag}
               <option value={tag}>{tag}</option>
             {/each}
           </slot>
-        </select>
+        </Select>
         <span>
           <Button on:click={closeDropdown} class="!h-6 !w-6 !px-0 !py-0">-</Button>
         </span>
