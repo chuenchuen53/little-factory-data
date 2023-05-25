@@ -14,7 +14,6 @@ function customStore() {
   const openModal = (data: BuildingCard) => {
     const clone: BuildingCard = JSON.parse(JSON.stringify(data));
     set({ data: clone });
-    console.log(clone);
   };
 
   const closeModal = () => {
