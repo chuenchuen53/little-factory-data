@@ -47,7 +47,6 @@
   import type { CardQuantity } from "../game/typing";
   import { cardDataStore } from "../store/cardData";
   import NumberInput from "$lib/NumberInput.svelte";
-  import type { CardIdentities } from "../game/CardIdentities";
   import { cardQuantityStore } from "../store/cardQuantity";
 
   export let data: CardQuantity[];
