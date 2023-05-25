@@ -10,7 +10,7 @@
   import ResourceCardDataModal from "./ResourceCardDataModal.svelte";
   import BuildingCardDataModal from "./BuildingCardDataModal.svelte";
   import type { GenerateDataRequestBody } from "./generate-data/typing";
-  import NumberInput from "$lib/NumberInput.svelte";
+  import Input from "$lib/Input.svelte";
   import Button from "$lib/Button.svelte";
 
   $: basicResource = $cardDataStore[CardType.BASIC_RESOURCE];

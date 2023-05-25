@@ -6,6 +6,7 @@
   import { resourceCardModalStore } from "../store/resourceCardModal";
   import ResourceCardSelector from "$lib/ResourceCardSelector.svelte";
   import IconButton from "$lib/IconButton.svelte";
+  import Input from "$lib/Input.svelte";
 
   $: data = $resourceCardModalStore.data;
   $: open = data !== null;
@@ -41,31 +42,13 @@
         </select>
 
         <label for="type-id-input">Type Id:</label>
-        <input
-          disabled
-          id="type-id-input"
-          type="number"
-          min="1"
-          value={data.cardIdentity.typeId}
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        />
+        <Input disabled id="type-id-input" type="number" min="1" value={data.cardIdentity.typeId} />
 
         <label for="name-input">Name:</label>
-        <input
-          id="type-id-input"
-          type="text"
-          bind:value={data.name}
-          class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-        />
+        <Input id="type-id-input" type="text" bind:value={data.name} />
 
         <label for="value-input">Value:</label>
-        <input
-          id="value-input"
-          type="number"
-          min="1"
-          bind:value={data.value}
-          class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-        />
+        <Input id="value-input" type="number" min="1" bind:value={data.value} />
 
         <label for="cost-input">Cost:</label>
         <div>
@@ -87,13 +70,11 @@
         </div>
 
         <label for="capital-input">Capital:</label>
-        <div>
-          <ResourceCardSelector
-            selectedTags={data.capital}
-            handleAdd={(x) => data && updateCapital([...data.capital, x])}
-            handleRemove={(x) => data && updateCapital([...data.capital.slice(0, x), ...data.capital.slice(x + 1)])}
-          />
-        </div>
+        <ResourceCardSelector
+          selectedTags={data.capital}
+          handleAdd={(x) => data && updateCapital([...data.capital, x])}
+          handleRemove={(x) => data && updateCapital([...data.capital.slice(0, x), ...data.capital.slice(x + 1)])}
+        />
       </form>
     </div>
   </Modal>

@@ -64,11 +64,11 @@
           </slot>
         </select>
         <span>
-          <Button on:click={closeDropdown} class="h-6 w-6 px-0 py-0">-</Button>
+          <Button on:click={closeDropdown} class="!h-6 !w-6 !px-0 !py-0">-</Button>
         </span>
       </div>
     {:else}
-      <Button on:click={openDropdown} class="h-6 w-6 px-0 py-0">+</Button>
+      <Button on:click={openDropdown} class="!h-6 !w-6 !px-0 !py-0">+</Button>
     {/if}
   </div>
 </div>

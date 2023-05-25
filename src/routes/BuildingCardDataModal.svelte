@@ -7,6 +7,7 @@
   import ResourceCardSelector from "$lib/ResourceCardSelector.svelte";
   import { cardDataStore } from "../store/cardData";
   import IconButton from "$lib/IconButton.svelte";
+  import Input from "$lib/Input.svelte";
 
   $: data = $buildingCardModalStore.data;
   $: open = data !== null;
@@ -68,31 +69,13 @@
         </select>
 
         <label for="type-id-input">Type Id:</label>
-        <input
-          disabled
-          id="type-id-input"
-          type="number"
-          min="1"
-          value={data.cardIdentity.typeId}
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        />
+        <Input disabled id="type-id-input" type="number" min="1" value={data.cardIdentity.typeId} />
 
         <label for="name-input">Name:</label>
-        <input
-          id="type-id-input"
-          type="text"
-          bind:value={data.name}
-          class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-        />
+        <Input id="type-id-input" type="text" bind:value={data.name} />
 
         <label for="value-input">Value:</label>
-        <input
-          id="value-input"
-          type="number"
-          min="1"
-          bind:value={data.value}
-          class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-        />
+        <Input id="value-input" type="number" min="1" bind:value={data.value} />
 
         <label for="cost-input">Cost:</label>
         <div>
@@ -114,25 +97,13 @@
         </div>
 
         <label for="is-starting-input">Staring Building:</label>
-        <div>
-          <input id="is-starting-input" type="checkbox" bind:checked={data.isStartingBuilding} class="accent-blue-700 h-5 w-5 cursor-pointer" />
-        </div>
+        <input id="is-starting-input" type="checkbox" bind:checked={data.isStartingBuilding} class="accent-blue-700 h-5 w-5 cursor-pointer" />
 
         <label for="is-extension-input">Extension:</label>
-        <div>
-          <input id="is-extension-input" type="checkbox" bind:checked={data.isExtension} class="accent-blue-700 h-5 w-5 cursor-pointer" />
-        </div>
+        <input id="is-extension-input" type="checkbox" bind:checked={data.isExtension} class="accent-blue-700 h-5 w-5 cursor-pointer" />
 
         <label for="points-input">Points:</label>
-        <div>
-          <input
-            id="value-input"
-            type="number"
-            min="1"
-            bind:value={data.points}
-            class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-          />
-        </div>
+        <Input id="value-input" type="number" min="1" bind:value={data.points} />
 
         <label for="effect-cost-input">Effect Cost:</label>
         <div>
@@ -154,38 +125,26 @@
         </div>
 
         <label for="effect-capital-input">Effect Capital:</label>
-        <div>
-          <ResourceCardSelector
-            selectedTags={data.effectCapital}
-            handleAdd={(x) => data && updateEffectCapital([...data.effectCapital, x])}
-            handleRemove={(x) => data && updateEffectCapital([...data.effectCapital.slice(0, x), ...data.effectCapital.slice(x + 1)])}
-          />
-        </div>
+        <ResourceCardSelector
+          selectedTags={data.effectCapital}
+          handleAdd={(x) => data && updateEffectCapital([...data.effectCapital, x])}
+          handleRemove={(x) => data && updateEffectCapital([...data.effectCapital.slice(0, x), ...data.effectCapital.slice(x + 1)])}
+        />
 
         <label for="effect-product-select">Effect Product:</label>
-        <div>
-          <select
-            value={data.effectProduct ? cardIdentityToStr(data.effectProduct) : null}
-            on:change={handleEffectProductChange}
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          >
-            <option value={null}>no product</option>
-            {#each $getAllResourceCards as x}
-              <option value={cardIdentityToStr(x.cardIdentity)}>{$getName(x.cardIdentity)}</option>
-            {/each}
-          </select>
-        </div>
+        <select
+          value={data.effectProduct ? cardIdentityToStr(data.effectProduct) : null}
+          on:change={handleEffectProductChange}
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
+          <option value={null}>no product</option>
+          {#each $getAllResourceCards as x}
+            <option value={cardIdentityToStr(x.cardIdentity)}>{$getName(x.cardIdentity)}</option>
+          {/each}
+        </select>
 
         <label for="effect-points-input">Effect Points:</label>
-        <div>
-          <input
-            id="value-input"
-            type="number"
-            min="1"
-            bind:value={data.effectPoints}
-            class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-          />
-        </div>
+        <Input id="value-input" type="number" min="1" bind:value={data.effectPoints} />
 
         <label for="special-effect">Special Effect</label>
         <div>
