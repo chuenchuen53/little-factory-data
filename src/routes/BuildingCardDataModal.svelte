@@ -9,6 +9,7 @@
   import IconButton from "$lib/IconButton.svelte";
   import Input from "$lib/Input.svelte";
   import Select from "$lib/Select.svelte";
+  import Checkbox from "$lib/Checkbox.svelte";
 
   $: data = $buildingCardModalStore.data;
   $: open = data !== null;
@@ -40,9 +41,10 @@
     return `${cardIdentity.cardType}-${cardIdentity.typeId}`;
   }
 
-  function handleEffectProductChange(e: Event & { currentTarget: EventTarget & HTMLSelectElement }) {
-    const value = e.currentTarget.value;
-    if (value === "null") {
+  function handleEffectProductChange(e: Event) {
+    let typedEvent = e as Event & { currentTarget: EventTarget & HTMLSelectElement };
+    const value = typedEvent.currentTarget.value;
+    if (value === "@@NULL") {
       updateProduct(null);
     } else {
       const [cardType, typeId] = value.split("-");
@@ -93,10 +95,10 @@
         </div>
 
         <label for="is-starting-input">Staring Building:</label>
-        <input id="is-starting-input" type="checkbox" bind:checked={data.isStartingBuilding} class="accent-blue-700 h-5 w-5 cursor-pointer" />
+        <Checkbox id="is-starting-input" bind:checked={data.isStartingBuilding} />
 
         <label for="is-extension-input">Extension:</label>
-        <input id="is-extension-input" type="checkbox" bind:checked={data.isExtension} class="accent-blue-700 h-5 w-5 cursor-pointer" />
+        <Checkbox id="is-extension-input" bind:checked={data.isExtension} />
 
         <label for="points-input">Points:</label>
         <Input id="value-input" type="number" min="1" bind:value={data.points} />
@@ -128,16 +130,12 @@
         />
 
         <label for="effect-product-select">Effect Product:</label>
-        <select
-          value={data.effectProduct ? cardIdentityToStr(data.effectProduct) : null}
-          on:change={handleEffectProductChange}
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        >
-          <option value={null}>no product</option>
+        <Select value={data.effectProduct ? cardIdentityToStr(data.effectProduct) : "@@NULL"} on:change={handleEffectProductChange}>
+          <option value="@@NULL">no product</option>
           {#each $getAllResourceCards as x}
             <option value={cardIdentityToStr(x.cardIdentity)}>{$getName(x.cardIdentity)}</option>
           {/each}
-        </select>
+        </Select>
 
         <label for="effect-points-input">Effect Points:</label>
         <Input id="value-input" type="number" min="1" bind:value={data.effectPoints} />
